@@ -5,5 +5,17 @@
   "repository": "https://github.com/olistic/solana-messenger.git",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "UNLICENSED",
-  "private": true
+  "private": true,
+  "scripts": {
+    "lint": "eslint --cache --ext .js src/client/*",
+    "lint:fix": "yarn lint --fix"
+  },
+  "devDependencies": {
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4"
+  }
 }
