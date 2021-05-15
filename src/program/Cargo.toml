@@ -1,0 +1,8 @@
+[package]
+name = "solana-messenger"
+version = "0.0.1"
+authors = ["Matias Olivera <moliverafreire@gmail.com>"]
+repository = "https://github.com/olistic/solana-messenger.git"
+edition = "2018"
+
+[dependencies]
