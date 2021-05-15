@@ -1,0 +1,9 @@
+{
+  "name": "solana-messenger",
+  "version": "0.0.1",
+  "description": "Instant messaging app built on Solana.",
+  "repository": "https://github.com/olistic/solana-messenger.git",
+  "author": "Matias Olivera <moliverafreire@gmail.com>",
+  "license": "UNLICENSED",
+  "private": true
+}
