@@ -9,6 +9,8 @@
   "scripts": {
     "lint": "eslint --cache --ext .js src/client/* && prettier --check \"src/client/**/*.js\"",
     "lint:fix": "eslint --cache --ext .js src/client/* --fix && prettier --write \"src/client/**/*.js\"",
+    "build:program": "cargo build-bpf --manifest-path=./src/program/Cargo.toml --bpf-out-dir=dist/program",
+    "clean:program": "cargo clean --manifest-path=./src/program/Cargo.toml && rm -rf ./dist",
     "postinstall": "cargo update --manifest-path=src/program/Cargo.toml"
   },
   "devDependencies": {

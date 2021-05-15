@@ -6,3 +6,11 @@ repository = "https://github.com/olistic/solana-messenger.git"
 edition = "2018"
 
 [dependencies]
+solana-program = "=1.6.9"
+
+[dev-dependencies]
+solana-sdk = "=1.6.9"
+
+[lib]
+name = "messenger"
+crate-type = ["cdylib", "lib"]
