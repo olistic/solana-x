@@ -1,0 +1,12 @@
+{
+  "name": "@solana-messenger/client",
+  "version": "0.0.1",
+  "repository": "https://github.com/olistic/solana-messenger/tree/master/client",
+  "author": "Matias Olivera <moliverafreire@gmail.com>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}

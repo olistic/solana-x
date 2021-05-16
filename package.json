@@ -9,11 +9,19 @@
   "scripts": {
     "lint": "eslint --cache --ext .js client/* && prettier --check \"client/**/*.js\"",
     "lint:fix": "eslint --cache --ext .js client/* --fix && prettier --write \"client/**/*.js\"",
+    "build:client": "webpack --mode production",
+    "clean:client": "rm -rf client/dist",
     "build:program": "cargo build-bpf --manifest-path=program/Cargo.toml --bpf-out-dir=program/dist",
     "clean:program": "cargo clean --manifest-path=program/Cargo.toml && rm -rf program/dist",
+    "start": "webpack serve",
     "postinstall": "cargo update --manifest-path=program/Cargo.toml"
   },
   "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.2",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
@@ -21,8 +29,12 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4",
+    "html-webpack-plugin": "^5.3.1",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
-    "prettier": "2.3.0"
+    "prettier": "2.3.0",
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }
