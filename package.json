@@ -7,11 +7,11 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "lint": "eslint --cache --ext .js src/client/* && prettier --check \"src/client/**/*.js\"",
-    "lint:fix": "eslint --cache --ext .js src/client/* --fix && prettier --write \"src/client/**/*.js\"",
-    "build:program": "cargo build-bpf --manifest-path=./src/program/Cargo.toml --bpf-out-dir=dist/program",
-    "clean:program": "cargo clean --manifest-path=./src/program/Cargo.toml && rm -rf ./dist",
-    "postinstall": "cargo update --manifest-path=src/program/Cargo.toml"
+    "lint": "eslint --cache --ext .js client/* && prettier --check \"client/**/*.js\"",
+    "lint:fix": "eslint --cache --ext .js client/* --fix && prettier --write \"client/**/*.js\"",
+    "build:program": "cargo build-bpf --manifest-path=program/Cargo.toml --bpf-out-dir=program/dist",
+    "clean:program": "cargo clean --manifest-path=program/Cargo.toml && rm -rf program/dist",
+    "postinstall": "cargo update --manifest-path=program/Cargo.toml"
   },
   "devDependencies": {
     "eslint": "^7.2.0",
