@@ -13,6 +13,7 @@
     "clean:client": "rm -rf client/dist",
     "build:program": "cargo build-bpf --manifest-path=program/Cargo.toml --bpf-out-dir=program/dist",
     "clean:program": "cargo clean --manifest-path=program/Cargo.toml && rm -rf program/dist",
+    "deploy:program": "solana program deploy program/dist/messenger.so",
     "start": "webpack serve",
     "postinstall": "cargo update --manifest-path=program/Cargo.toml"
   },
