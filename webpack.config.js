@@ -5,8 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const clientDir = path.resolve(__dirname, 'client');
 
 module.exports = {
-  entry: path.join(clientDir, 'src', 'index.js'),
-  mode: 'development',
+  context: clientDir,
   module: {
     rules: [
       {
