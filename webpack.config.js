@@ -2,10 +2,10 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const clientDir = path.resolve(__dirname, 'client');
+const webDir = path.resolve(__dirname, 'web');
 
 module.exports = {
-  context: clientDir,
+  context: webDir,
   module: {
     rules: [
       {
@@ -21,12 +21,12 @@ module.exports = {
     },
   },
   output: {
-    path: path.join(clientDir, 'dist'),
+    path: path.join(webDir, 'dist'),
     filename: 'bundle.js',
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(clientDir, 'public', 'index.html'),
+      template: path.join(webDir, 'public', 'index.html'),
     }),
   ],
   devServer: {

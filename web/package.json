@@ -1,7 +1,7 @@
 {
-  "name": "@solana-messenger/client",
+  "name": "@solana-messenger/web",
   "version": "0.0.1",
-  "repository": "https://github.com/olistic/solana-messenger/tree/master/client",
+  "repository": "https://github.com/olistic/solana-messenger/tree/master/web",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "UNLICENSED",
   "private": true,

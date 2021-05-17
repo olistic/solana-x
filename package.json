@@ -7,10 +7,10 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "lint": "eslint --cache --ext .js client/* && prettier --check \"client/**/*.js\"",
-    "lint:fix": "eslint --cache --ext .js client/* --fix && prettier --write \"client/**/*.js\"",
-    "build:client": "webpack --mode production",
-    "clean:client": "rm -rf client/dist",
+    "lint": "eslint --cache --ext .js web/* && prettier --check \"web/**/*.js\"",
+    "lint:fix": "eslint --cache --ext .js web/* --fix && prettier --write \"web/**/*.js\"",
+    "build:web": "webpack --mode production",
+    "clean:web": "rm -rf web/dist",
     "build:program": "cargo build-bpf --manifest-path=program/Cargo.toml --bpf-out-dir=program/dist",
     "clean:program": "cargo clean --manifest-path=program/Cargo.toml && rm -rf program/dist",
     "deploy:program": "solana program deploy program/dist/messenger.so",
@@ -38,5 +38,5 @@
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
   },
-  "workspaces": ["client"]
+  "workspaces": ["web"]
 }
