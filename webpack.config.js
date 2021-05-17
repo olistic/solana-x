@@ -15,16 +15,21 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    fallback: {
+      assert: false,
+    },
+  },
   output: {
     path: path.join(clientDir, 'dist'),
     filename: 'bundle.js',
-  },
-  devServer: {
-    port: 3000,
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(clientDir, 'public', 'index.html'),
     }),
   ],
+  devServer: {
+    port: 3000,
+  },
 };
