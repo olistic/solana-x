@@ -1,5 +1,12 @@
 import React from 'react';
 
-const App = () => <h1>Hello, world!</h1>;
+import AppContext from './context';
+import Connection from './components/Connection';
+
+const App = () => (
+  <AppContext>
+    <Connection />
+  </AppContext>
+);
 
 export default App;
