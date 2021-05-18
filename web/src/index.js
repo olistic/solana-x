@@ -2,5 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './App';
+import AppContext from './context';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const Root = () => (
+  <AppContext>
+    <App />
+  </AppContext>
+);
+
+ReactDOM.render(<Root />, document.getElementById('root'));
