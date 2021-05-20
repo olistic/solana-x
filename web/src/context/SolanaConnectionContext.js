@@ -1,13 +1,12 @@
 import React, { useMemo } from 'react';
 import { Connection } from '@solana/web3.js';
 
-const rpcUrl = 'http://localhost:8899';
-const commitmentLevel = 'confirmed';
+import { RPC_URL } from '../config';
 
 const SolanaConnectionContext = React.createContext();
 
 export const SolanaConnectionProvider = ({ children }) => {
-  const connection = useMemo(() => new Connection(rpcUrl, commitmentLevel), []);
+  const connection = useMemo(() => new Connection(RPC_URL), []);
 
   return (
     <SolanaConnectionContext.Provider value={connection}>
