@@ -5,9 +5,11 @@ import App from './App';
 import AppContext from './context';
 
 const Root = () => (
-  <AppContext>
-    <App />
-  </AppContext>
+  <React.StrictMode>
+    <AppContext>
+      <App />
+    </AppContext>
+  </React.StrictMode>
 );
 
 ReactDOM.render(<Root />, document.getElementById('root'));

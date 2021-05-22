@@ -7,22 +7,15 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "lint": "eslint --cache --ext .js web/* && prettier --check \"web/**/*.js\"",
-    "lint:fix": "eslint --cache --ext .js web/* --fix && prettier --write \"web/**/*.js\"",
-    "build:web": "webpack --mode production",
-    "clean:web": "rm -rf web/dist",
+    "lint": "eslint --cache --ext .js web/src/* && prettier --check \"web/src/**/*.js\"",
+    "lint:fix": "eslint --cache --ext .js web/src/* --fix && prettier --write \"web/src/**/*.js\"",
     "build:program": "cargo build-bpf --manifest-path=program/Cargo.toml --bpf-out-dir=program/dist",
     "clean:program": "cargo clean --manifest-path=program/Cargo.toml && rm -rf program/dist",
     "deploy:program": "solana program deploy program/dist/messenger.so",
-    "start": "webpack serve --mode development",
+    "start": "yarn workspace @solana-messenger/web start",
     "postinstall": "cargo update --manifest-path=program/Cargo.toml"
   },
   "devDependencies": {
-    "@babel/cli": "^7.13.16",
-    "@babel/core": "^7.14.2",
-    "@babel/preset-env": "^7.14.2",
-    "@babel/preset-react": "^7.13.13",
-    "babel-loader": "^8.2.2",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
@@ -30,13 +23,9 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4",
-    "html-webpack-plugin": "^5.3.1",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
-    "prettier": "2.3.0",
-    "webpack": "^5.37.0",
-    "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^3.11.2"
+    "prettier": "2.3.0"
   },
   "workspaces": [
     "web"
