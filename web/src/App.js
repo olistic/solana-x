@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div>
-      <h1>Solana Web3 Tutorial</h1>
+      <h1>Solana Message Wall</h1>
       {!walletAddress && (
         <button onClick={connectWallet} type="button">
           Connect Wallet
