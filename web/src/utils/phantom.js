@@ -28,3 +28,15 @@ export const getPhantomWalletAddress = async () => {
     return null;
   }
 };
+
+/**
+ * Connects to the Phantom wallet of the user.
+ */
+export const connectPhantomWallet = async () => {
+  try {
+    const phantomWallet = getPhantomWallet();
+    await phantomWallet.connect();
+  } catch (err) {
+    // Ignore error.
+  }
+};
