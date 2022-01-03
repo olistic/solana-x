@@ -1,5 +1,5 @@
 {
-  "name": "@solana-react-starter/web",
+  "name": "@buildspace-solana-web3/web",
   "version": "0.0.1",
   "private": true,
   "dependencies": {

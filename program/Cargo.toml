@@ -1,8 +1,8 @@
 [package]
-name = "solana-react-starter"
+name = "buildspace-solana-web3"
 version = "0.0.1"
 authors = ["Matias Olivera <moliverafreire@gmail.com>"]
-repository = "https://github.com/olistic/solana-react-starter.git"
+repository = "https://github.com/olistic/buildspace-solana-web3.git"
 edition = "2018"
 
 [dependencies]
@@ -12,5 +12,5 @@ solana-program = "=1.6.9"
 solana-sdk = "=1.6.9"
 
 [lib]
-name = "starter"
+name = "tutorial"
 crate-type = ["cdylib", "lib"]

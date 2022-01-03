@@ -1,8 +1,8 @@
 {
-  "name": "solana-react-starter",
+  "name": "buildspace-solana-web3",
   "version": "0.0.1",
-  "description": "Boilerplate for a web3 app built with Solana and React.js.",
-  "repository": "https://github.com/olistic/solana-react-starter.git",
+  "description": "Solana web3 tutorial from buildspace.so",
+  "repository": "https://github.com/olistic/buildspace-solana-web3.git",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "UNLICENSED",
   "private": true,
@@ -11,8 +11,8 @@
     "lint:fix": "eslint --cache --ext .js web/src/* --fix && prettier --write \"web/src/**/*.js\"",
     "build:program": "cargo build-bpf --manifest-path=program/Cargo.toml --bpf-out-dir=program/dist",
     "clean:program": "cargo clean --manifest-path=program/Cargo.toml && rm -rf program/dist",
-    "deploy:program": "solana program deploy program/dist/starter.so",
-    "start": "yarn workspace @solana-react-starter/web start",
+    "deploy:program": "solana program deploy program/dist/tutorial.so",
+    "start": "yarn workspace @buildspace-solana-web3/web start",
     "postinstall": "cargo update --manifest-path=program/Cargo.toml"
   },
   "devDependencies": {

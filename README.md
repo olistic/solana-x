@@ -1,12 +1,3 @@
-# solana-react-starter
+# buildspace-solana-web3
 
-Boilerplate for a web3 app built with Solana and React.js.
-
-## Instructions
-
-To use this starter:
-
-1. `s/solana-react-starter/your-project-name`.
-1. `s/starter/your-project-proper-name/I`.
-1. Update the project description in [`package.json`](./package.json).
-1. Update this README.
+[Solana web3 tutorial](https://app.buildspace.so/projects/CObd6d35ce-3394-4bd8-977e-cbee82ae07a3) from [buildspace.so](https://buildspace.so).
