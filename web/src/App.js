@@ -9,7 +9,7 @@ import {
 import useSolanaConnection from './hooks/useSolanaConnection';
 import { PAYER_SECRET_KEY, PROGRAM_ID } from './config';
 
-const App = () => {
+function App() {
   const connection = useSolanaConnection();
 
   const [nodeVersion, setNodeVersion] = useState();
@@ -47,6 +47,6 @@ const App = () => {
       </button>
     </div>
   );
-};
+}
 
 export default App;

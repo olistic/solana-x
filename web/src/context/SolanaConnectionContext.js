@@ -5,7 +5,7 @@ import { RPC_URL } from '../config';
 
 const SolanaConnectionContext = React.createContext();
 
-export const SolanaConnectionProvider = ({ children }) => {
+export function SolanaConnectionProvider({ children }) {
   const connection = useMemo(() => new Connection(RPC_URL), []);
 
   return (
@@ -13,6 +13,6 @@ export const SolanaConnectionProvider = ({ children }) => {
       {children}
     </SolanaConnectionContext.Provider>
   );
-};
+}
 
 export default SolanaConnectionContext;
