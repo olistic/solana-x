@@ -1712,14 +1712,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "solana-messenger"
-version = "0.0.1"
-dependencies = [
- "solana-program",
- "solana-sdk",
-]
-
-[[package]]
 name = "solana-program"
 version = "1.6.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1751,6 +1743,14 @@ dependencies = [
  "solana-logger",
  "solana-sdk-macro",
  "thiserror",
+]
+
+[[package]]
+name = "solana-react-starter"
+version = "0.0.1"
+dependencies = [
+ "solana-program",
+ "solana-sdk",
 ]
 
 [[package]]

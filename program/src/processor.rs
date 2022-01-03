@@ -5,7 +5,7 @@ pub fn process_instruction(
     _accounts: &[AccountInfo],
     _instruction_data: &[u8],
 ) -> ProgramResult {
-    msg!("Messenger program entrypoint");
+    msg!("Program entrypoint");
 
     Ok(())
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@solana-messenger/web",
+  "name": "@solana-react-starter/web",
   "version": "0.0.1",
   "private": true,
   "dependencies": {

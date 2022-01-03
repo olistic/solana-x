@@ -1,8 +1,8 @@
 [package]
-name = "solana-messenger"
+name = "solana-react-starter"
 version = "0.0.1"
 authors = ["Matias Olivera <moliverafreire@gmail.com>"]
-repository = "https://github.com/olistic/solana-messenger.git"
+repository = "https://github.com/olistic/solana-react-starter.git"
 edition = "2018"
 
 [dependencies]
@@ -12,5 +12,5 @@ solana-program = "=1.6.9"
 solana-sdk = "=1.6.9"
 
 [lib]
-name = "messenger"
+name = "starter"
 crate-type = ["cdylib", "lib"]

@@ -1,6 +1,6 @@
 {
-  "short_name": "Messenger",
-  "name": "Solana Messenger",
+  "short_name": "Starter",
+  "name": "Solana React.js Starter",
   "icons": [
     {
       "src": "favicon.ico",

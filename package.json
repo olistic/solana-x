@@ -1,8 +1,8 @@
 {
-  "name": "solana-messenger",
+  "name": "solana-react-starter",
   "version": "0.0.1",
-  "description": "Instant messaging app built on Solana.",
-  "repository": "https://github.com/olistic/solana-messenger.git",
+  "description": "Boilerplate for a web3 app built with Solana and React.js.",
+  "repository": "https://github.com/olistic/solana-react-starter.git",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "UNLICENSED",
   "private": true,
@@ -12,7 +12,7 @@
     "build:program": "cargo build-bpf --manifest-path=program/Cargo.toml --bpf-out-dir=program/dist",
     "clean:program": "cargo clean --manifest-path=program/Cargo.toml && rm -rf program/dist",
     "deploy:program": "solana program deploy program/dist/messenger.so",
-    "start": "yarn workspace @solana-messenger/web start",
+    "start": "yarn workspace @solana-react-starter/web start",
     "postinstall": "cargo update --manifest-path=program/Cargo.toml"
   },
   "devDependencies": {
