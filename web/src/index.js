@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 
 import App from './App';
 import AppContext from './context';
-import './globalStyles';
+import globalStyles from './globalStyles';
 
 function Root() {
+  globalStyles();
+
   return (
     <React.StrictMode>
       <AppContext>
