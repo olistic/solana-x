@@ -7,6 +7,8 @@ import { globalCss } from '@stitches/react';
 
 const globalStyles = globalCss({
   body: {
+    backgroundColor: '$background',
+    fontFamily: '$source',
     fontSize: '1rem',
   },
 });
