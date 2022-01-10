@@ -10,8 +10,7 @@ const Button = styled('button', {
   fontWeight: 600,
   height: '$6',
   letterSpacing: '0.3px',
-  paddingX: '$4',
-  paddingY: 0,
+  padding: '0 $4',
 
   '&:focus': {
     outline: 'none',

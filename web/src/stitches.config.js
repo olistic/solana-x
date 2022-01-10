@@ -15,7 +15,8 @@ export const {
       background: '#fafafa',
       foreground: '#231f20',
 
-      gray100: 'rgba(0, 0, 0, 0.1)',
+      gray100: 'rgba(0, 0, 0, 0.05)',
+      gray200: 'rgba(0, 0, 0, 0.1)',
       gray500: 'rgba(0, 0, 0, 0.5)',
       gray800: 'rgba(0, 0, 0, 0.85)',
 

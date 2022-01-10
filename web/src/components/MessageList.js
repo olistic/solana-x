@@ -74,7 +74,7 @@ const StyledList = styled('ul', {
 const StyledItem = styled('li', {
   listStyle: 'none',
   '& + &': {
-    borderTop: '1px solid $gray100',
+    borderTop: '1px solid $gray200',
   },
 });
 
