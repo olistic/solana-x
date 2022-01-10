@@ -4,6 +4,7 @@ import Header from './components/Header';
 import MessageForm from './components/MessageForm';
 import MessageList from './components/MessageList';
 import dummyMessages from './dummyMessages';
+import usePhantomWallet from './hooks/usePhantomWallet';
 import { styled } from './stitches.config';
 
 const Container = styled('div', {
@@ -18,13 +19,17 @@ const MessageFormWrapper = styled('div', {
 });
 
 function App() {
+  const { isWalletConnected } = usePhantomWallet();
+
   return (
     <div>
       <Header />
       <Container>
-        <MessageFormWrapper>
-          <MessageForm />
-        </MessageFormWrapper>
+        {isWalletConnected && (
+          <MessageFormWrapper>
+            <MessageForm />
+          </MessageFormWrapper>
+        )}
         <MessageList messages={dummyMessages} />
       </Container>
     </div>

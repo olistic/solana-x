@@ -32,6 +32,7 @@ export function PhantomWalletProvider({ children }) {
     () => ({
       connectWallet,
       hasWallet,
+      isWalletConnected: !!walletAddress,
       walletAddress,
     }),
     [connectWallet, hasWallet, walletAddress],

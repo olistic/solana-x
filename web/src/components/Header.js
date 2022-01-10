@@ -19,9 +19,7 @@ const Heading = styled('h1', {
 });
 
 function Header() {
-  const { connectWallet, walletAddress } = usePhantomWallet();
-
-  const isWalletConnected = !!walletAddress;
+  const { connectWallet, isWalletConnected } = usePhantomWallet();
 
   return (
     <StyledHeader>
