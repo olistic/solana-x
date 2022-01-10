@@ -1,16 +1,20 @@
 [package]
-name = "buildspace-solana-web3"
+name = "tutorial"
 version = "0.0.1"
 authors = ["Matias Olivera <moliverafreire@gmail.com>"]
 repository = "https://github.com/olistic/buildspace-solana-web3.git"
 edition = "2018"
 
-[dependencies]
-solana-program = "=1.6.9"
-
-[dev-dependencies]
-solana-sdk = "=1.6.9"
-
 [lib]
-name = "tutorial"
 crate-type = ["cdylib", "lib"]
+name = "tutorial"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
+
+[dependencies]
+anchor-lang = "0.20.1"

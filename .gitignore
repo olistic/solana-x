@@ -117,3 +117,6 @@ target/
 
 ### Solana ###
 test-ledger/
+
+### Anchor ###
+.anchor
