@@ -10,8 +10,20 @@ import { styled } from './stitches.config';
 const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
+  height: '100%',
+});
+
+const ScrollableContainer = styled('div', {
+  flex: 1,
+  overflowY: 'auto',
+});
+
+const Main = styled('main', {
+  display: 'flex',
+  flexDirection: 'column',
   margin: '$4 auto 0',
   maxWidth: '480px',
+  width: '100%',
 });
 
 const MessageFormWrapper = styled('div', {
@@ -34,17 +46,19 @@ function App() {
   };
 
   return (
-    <div>
+    <Container>
       <Header />
-      <Container>
-        {isWalletConnected && (
-          <MessageFormWrapper>
-            <MessageForm onMessagePost={handleMessagePost} />
-          </MessageFormWrapper>
-        )}
-        <MessageList messages={messages} />
-      </Container>
-    </div>
+      <ScrollableContainer>
+        <Main>
+          {isWalletConnected && (
+            <MessageFormWrapper>
+              <MessageForm onMessagePost={handleMessagePost} />
+            </MessageFormWrapper>
+          )}
+          <MessageList messages={messages} />
+        </Main>
+      </ScrollableContainer>
+    </Container>
   );
 }
 

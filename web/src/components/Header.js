@@ -7,6 +7,7 @@ import { styled } from '../stitches.config';
 const StyledHeader = styled('header', {
   alignItems: 'center',
   display: 'flex',
+  height: '$10',
   justifyContent: 'space-between',
   padding: '$2 $4',
 });

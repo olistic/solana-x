@@ -31,6 +31,8 @@ export const {
       6: '48px',
       7: '56px',
       8: '64px',
+      9: '72px',
+      10: '80px',
     },
     space: {
       1: '8px',
@@ -38,9 +40,6 @@ export const {
       3: '24px',
       4: '32px',
       5: '40px',
-      6: '48px',
-      7: '56px',
-      8: '64px',
     },
     fontSizes: {
       1: '12px',

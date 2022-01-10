@@ -10,6 +10,12 @@ const globalStyles = globalCss({
     backgroundColor: '$background',
     fontFamily: '$source',
     fontSize: '1rem',
+    height: '100vh',
+    overflow: 'hidden',
+  },
+
+  '#root': {
+    height: '100%',
   },
 });
 
