@@ -4,6 +4,8 @@ import Button from './Button';
 import TextField from './TextField';
 import { styled } from '../stitches.config';
 
+let id = 3;
+
 const StyledForm = styled('form', {
   display: 'flex',
 });
@@ -12,21 +14,30 @@ const StyledTextField = styled(TextField, {
   flex: 1,
 });
 
-function MessageForm() {
-  const [message, setMessage] = useState('');
+function MessageForm({ onMessagePost }) {
+  const [content, setContent] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // TODO
+    const newMessage = {
+      id: id++, // eslint-disable-line no-plusplus
+      author: 'john',
+      content,
+      createdAt: new Date(),
+    };
+    await onMessagePost(newMessage);
+
+    // Reset form.
+    setContent('');
   };
 
   return (
     <StyledForm onSubmit={handleSubmit}>
       <StyledTextField
-        onChange={(event) => setMessage(event.target.value)}
+        onChange={(event) => setContent(event.target.value)}
         placeholder="type your message"
-        value={message}
+        value={content}
       />
       <Button>Post</Button>
     </StyledForm>

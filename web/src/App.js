@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Header from './components/Header';
 import MessageForm from './components/MessageForm';
@@ -19,7 +19,19 @@ const MessageFormWrapper = styled('div', {
 });
 
 function App() {
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    // TODO: Fetch messages from Solana.
+    setMessages(dummyMessages);
+  }, []);
+
   const { isWalletConnected } = usePhantomWallet();
+
+  const handleMessagePost = async (newMessage) => {
+    // TODO: Store message in Solana.
+    setMessages([newMessage, ...messages]);
+  };
 
   return (
     <div>
@@ -27,10 +39,10 @@ function App() {
       <Container>
         {isWalletConnected && (
           <MessageFormWrapper>
-            <MessageForm />
+            <MessageForm onMessagePost={handleMessagePost} />
           </MessageFormWrapper>
         )}
-        <MessageList messages={dummyMessages} />
+        <MessageList messages={messages} />
       </Container>
     </div>
   );
