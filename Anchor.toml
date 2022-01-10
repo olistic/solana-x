@@ -1,5 +1,8 @@
 [programs.localnet]
-tutorial = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+tutorial = "9Je1KH27W4ARK8F5RSk5ZuDfgwEPgarggzwHdSrgFmBC"
+
+[programs.devnet]
+tutorial = "9Je1KH27W4ARK8F5RSk5ZuDfgwEPgarggzwHdSrgFmBC"
 
 [registry]
 url = "https://anchor.projectserum.com"
