@@ -90,4 +90,30 @@ describe('tutorial', () => {
       'The instruction should have failed with a 281-character content.',
     );
   });
+
+  it('can fetch all messages', async () => {
+    const messageAccounts = await program.account.message.all();
+    assert.equal(messageAccounts.length, 2);
+  });
+
+  it('can filter messages by author', async () => {
+    const authorPublicKey = program.provider.wallet.publicKey;
+    const messageAccounts = await program.account.message.all([
+      {
+        memcmp: {
+          offset: 8, // Discriminator.
+          bytes: authorPublicKey.toBase58(),
+        },
+      },
+    ]);
+
+    assert.equal(messageAccounts.length, 1);
+    assert.ok(
+      messageAccounts.every(
+        (messageAccount) =>
+          messageAccount.account.author.toBase58() ===
+          authorPublicKey.toBase58(),
+      ),
+    );
+  });
 });
