@@ -8,6 +8,10 @@ pub mod tutorial {
     use super::*;
 
     pub fn post_message(ctx: Context<PostMessage>, content: String) -> ProgramResult {
+        if content.chars().count() > 280 {
+            return Err(ErrorCode::ContentTooLong.into())
+        }
+
         let message: &mut Account<Message> = &mut ctx.accounts.message;
         let author: &Signer = &ctx.accounts.author;
         let clock: Clock = Clock::get().unwrap();
@@ -48,4 +52,10 @@ impl Message {
         + PUBLIC_KEY_LENGTH // Author.
         + TIMESTAMP_LENGTH // Timestamp.
         + STRING_LENGTH_PREFIX + MAX_CONTENT_LENGTH; // Content.
+}
+
+#[error]
+pub enum ErrorCode {
+    #[msg("The provided content should be 280 characters long maximum.")]
+    ContentTooLong,
 }
