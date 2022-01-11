@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@project-serum/anchor": "^0.20.1",
     "@solana/web3.js": "^1.31.0",
     "@stitches/react": "^1.2.6",
     "@testing-library/jest-dom": "^5.16.1",

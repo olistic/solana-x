@@ -1,7 +1,8 @@
 import React from 'react';
 
 import Button from './Button';
-import usePhantomWallet from '../hooks/usePhantomWallet';
+import useWallet from '../hooks/useWallet';
+import useWorkspace from '../hooks/useWorkspace';
 import { styled } from '../stitches.config';
 
 const StyledHeader = styled('header', {
@@ -19,8 +20,16 @@ const Heading = styled('h1', {
   textTransform: 'lowercase',
 });
 
+const PublicKey = styled('p', {
+  fontFamily: '$mono',
+  fontSize: '$1',
+  lineHeight: 1,
+  margin: 0,
+});
+
 function Header() {
-  const { connectWallet, isWalletConnected } = usePhantomWallet();
+  const { connect, connected } = useWallet();
+  const { wallet } = useWorkspace();
 
   return (
     <StyledHeader>
@@ -28,8 +37,10 @@ function Header() {
         <Heading>Solana Message Wall</Heading>
       </div>
       <div>
-        {!isWalletConnected && (
-          <Button onClick={connectWallet} type="button">
+        {connected ? (
+          <PublicKey>{wallet.publicKey.toBase58()}</PublicKey>
+        ) : (
+          <Button onClick={connect} type="button">
             Connect Wallet
           </Button>
         )}

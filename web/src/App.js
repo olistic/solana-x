@@ -4,7 +4,7 @@ import Header from './components/Header';
 import MessageForm from './components/MessageForm';
 import MessageList from './components/MessageList';
 import dummyMessages from './dummyMessages';
-import usePhantomWallet from './hooks/usePhantomWallet';
+import useWallet from './hooks/useWallet';
 import { styled } from './stitches.config';
 
 const Container = styled('div', {
@@ -38,7 +38,7 @@ function App() {
     setMessages(dummyMessages);
   }, []);
 
-  const { isWalletConnected } = usePhantomWallet();
+  const { connected } = useWallet();
 
   const handleMessagePost = async (newMessage) => {
     // TODO: Store message in Solana.
@@ -50,7 +50,7 @@ function App() {
       <Header />
       <ScrollableContainer>
         <Main>
-          {isWalletConnected && (
+          {connected && (
             <MessageFormWrapper>
               <MessageForm onMessagePost={handleMessagePost} />
             </MessageFormWrapper>

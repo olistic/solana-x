@@ -1,14 +1,9 @@
 import React from 'react';
 
-import { PhantomWalletProvider } from './PhantomWalletContext';
-import { SolanaConnectionProvider } from './SolanaConnectionContext';
+import { WalletProvider } from './WalletContext';
 
 function AppContext({ children }) {
-  return (
-    <SolanaConnectionProvider>
-      <PhantomWalletProvider>{children}</PhantomWalletProvider>
-    </SolanaConnectionProvider>
-  );
+  return <WalletProvider>{children}</WalletProvider>;
 }
 
 export default AppContext;

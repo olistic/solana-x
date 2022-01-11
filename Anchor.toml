@@ -13,3 +13,4 @@ wallet = "/Users/oli/.config/solana/id.json"
 
 [scripts]
 test = "yarn run mocha -t 1000000 tests/"
+copy-idl = "mkdir -p web/src/idl && cp target/idl/tutorial.json web/src/idl/tutorial.json"
