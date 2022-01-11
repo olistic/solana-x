@@ -4,8 +4,6 @@ import Button from './Button';
 import TextField from './TextField';
 import { styled } from '../stitches.config';
 
-let id = 3;
-
 const StyledForm = styled('form', {
   display: 'flex',
 });
@@ -21,7 +19,6 @@ function MessageForm({ onMessagePost }) {
     event.preventDefault();
 
     const newMessage = {
-      id: id++, // eslint-disable-line no-plusplus
       author: 'john',
       content,
       createdAt: new Date(),

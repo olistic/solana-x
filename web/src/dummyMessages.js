@@ -1,14 +1,14 @@
+const now = Math.floor(Date.now() / 1000);
+
 export default [
   {
-    id: 2,
     author: 'mike',
+    timestamp: now,
     content: 'Lorem ipsum dolor sit amet.',
-    createdAt: new Date(),
   },
   {
-    id: 1,
     author: 'sandra',
+    timestamp: now - 5 * 60,
     content: 'Hey there! This is a dummy message.',
-    createdAt: new Date(),
   },
 ];
