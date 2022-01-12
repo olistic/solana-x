@@ -1,15 +1,11 @@
 import React from 'react';
 
-import { getAvatarSrc } from '../utils/avatars';
+import Avatar from './Avatar';
 import { styled } from '../stitches.config';
 
 const StyledArticle = styled('article', {
   display: 'flex',
   paddingY: '$2',
-});
-
-const Avatar = styled('img', {
-  size: '$7',
 });
 
 const Container = styled('div', {
@@ -49,7 +45,7 @@ const Content = styled('p', {
 function Message({ author, content, createdAt }) {
   return (
     <StyledArticle>
-      <Avatar src={getAvatarSrc(author)} />
+      <Avatar id={author} />
       <Container>
         <StyledHeader>
           <Author>{author}</Author>
