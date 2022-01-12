@@ -4,17 +4,19 @@ import { useMemo } from 'react';
 
 import idl from '../idl/tutorial.json';
 import useAnchorWallet from './useAnchorWallet';
-import { RPC_URL } from '../config';
+import { COMMITMENT, CLUSTER_URL, PREFLIGHT_COMMITMENT } from '../config';
 
-const preflightCommitment = 'processed';
-const commitment = 'processed';
 const programID = new PublicKey(idl.metadata.address);
 
 export default function useWorkspace() {
   const wallet = useAnchorWallet();
-  const connection = useMemo(() => new Connection(RPC_URL, commitment), []);
+  const connection = useMemo(() => new Connection(CLUSTER_URL, COMMITMENT), []);
   const provider = useMemo(
-    () => new Provider(connection, wallet, { preflightCommitment, commitment }),
+    () =>
+      new Provider(connection, wallet, {
+        preflightCommitment: PREFLIGHT_COMMITMENT,
+        commitment: COMMITMENT,
+      }),
     [connection, wallet],
   );
   const program = useMemo(

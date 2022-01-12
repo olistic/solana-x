@@ -4,11 +4,14 @@ tutorial = "9Je1KH27W4ARK8F5RSk5ZuDfgwEPgarggzwHdSrgFmBC"
 [programs.devnet]
 tutorial = "9Je1KH27W4ARK8F5RSk5ZuDfgwEPgarggzwHdSrgFmBC"
 
+[programs.mainnet]
+tutorial = "9Je1KH27W4ARK8F5RSk5ZuDfgwEPgarggzwHdSrgFmBC"
+
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "/Users/oli/.config/solana/id.json"
 
 [scripts]

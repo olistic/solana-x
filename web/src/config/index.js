@@ -1,7 +1,12 @@
-export const RPC_URL = process.env.REACT_APP_RPC_URL;
+const { CLUSTER } = process.env;
 
-export const PROGRAM_ID = process.env.REACT_APP_PROGRAM_ID;
+export const CLUSTER_URL =
+  CLUSTER === 'mainnet'
+    ? 'https://api.mainnet-beta.solana.com'
+    : CLUSTER === 'devnet'
+    ? 'https://api.devnet.solana.com'
+    : 'http://localhost:8899';
 
-export const PAYER_SECRET_KEY = Uint8Array.from(
-  process.env.REACT_APP_PAYER_SECRET_KEY.split(','),
-);
+export const PREFLIGHT_COMMITMENT = 'processed';
+
+export const COMMITMENT = 'processed';
