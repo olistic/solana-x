@@ -1,6 +1,39 @@
 import { web3 } from '@project-serum/anchor';
 
 import Message from '../models/Message';
+import Profile from '../models/Profile';
+
+export const fetchProfile = async ({ wallet, program }) => {
+  const profiles = await program.account.profile.all([
+    {
+      memcmp: {
+        offset: 8, // Discriminator.
+        bytes: wallet.publicKey.toBase58(),
+      },
+    },
+  ]);
+
+  if (profiles.length === 0) {
+    return null;
+  }
+
+  const profile = profiles[0];
+  return new Profile(profile.publicKey, profile.account);
+};
+
+export const createProfile = async ({ wallet, program }, name) => {
+  const profile = web3.Keypair.generate();
+  await program.rpc.createProfile(name, {
+    accounts: {
+      profile: profile.publicKey,
+      owner: wallet.publicKey,
+      systemProgram: web3.SystemProgram.programId,
+    },
+    signers: [profile],
+  });
+  const profileAccount = await program.account.profile.fetch(profile.publicKey);
+  return new Profile(profile.publicKey, profileAccount);
+};
 
 export const fetchMessages = async ({ program }) => {
   const messages = await program.account.message.all();

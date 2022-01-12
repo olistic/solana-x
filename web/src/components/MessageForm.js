@@ -12,13 +12,13 @@ const StyledTextField = styled(TextField, {
   flex: 1,
 });
 
-function MessageForm({ onMessagePost }) {
+function MessageForm({ onSubmit }) {
   const [content, setContent] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await onMessagePost(content);
+    await onSubmit(content);
 
     // Reset form.
     setContent('');
