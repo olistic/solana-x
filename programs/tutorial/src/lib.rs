@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 use anchor_lang::solana_program::system_program;
 
-declare_id!("9Je1KH27W4ARK8F5RSk5ZuDfgwEPgarggzwHdSrgFmBC");
+declare_id!("FdjuHUPyrqsdY9nQzGE8WzZfjMwUyutAMbTCgEtwCgPe");
 
 #[program]
 pub mod tutorial {
