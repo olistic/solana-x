@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import MessageForm from './components/MessageForm';
 import MessageList from './components/MessageList';
-import dummyMessages from './dummyMessages';
 import useWallet from './hooks/useWallet';
+import useWorkspace from './hooks/useWorkspace';
+import { fetchMessages } from './api';
 import { styled } from './stitches.config';
 
 const Container = styled('div', {
@@ -31,14 +32,19 @@ const MessageFormWrapper = styled('div', {
 });
 
 function App() {
+  const { connected } = useWallet();
+  const workspace = useWorkspace();
+
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    // TODO: Fetch messages from Solana.
-    setMessages(dummyMessages);
-  }, []);
+    const updateMessages = async () => {
+      const fetchedMessages = await fetchMessages(workspace);
+      setMessages(fetchedMessages);
+    };
 
-  const { connected } = useWallet();
+    updateMessages();
+  }, [workspace]);
 
   const handleMessagePost = async (newMessage) => {
     // TODO: Store message in Solana.

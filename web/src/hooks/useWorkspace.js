@@ -19,11 +19,14 @@ export default function useWorkspace() {
     () => new Program(idl, programID, provider),
     [provider],
   );
-
-  return {
-    wallet,
-    connection,
-    provider,
-    program,
-  };
+  const workspace = useMemo(
+    () => ({
+      wallet,
+      connection,
+      provider,
+      program,
+    }),
+    [wallet, connection, provider, program],
+  );
+  return workspace;
 }

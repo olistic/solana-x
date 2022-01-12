@@ -3,6 +3,7 @@ import React from 'react';
 import Button from './Button';
 import useWallet from '../hooks/useWallet';
 import useWorkspace from '../hooks/useWorkspace';
+import { condensePublicKey } from '../utils/publicKeys';
 import { styled } from '../stitches.config';
 
 const StyledHeader = styled('header', {
@@ -38,7 +39,9 @@ function Header() {
       </div>
       <div>
         {connected ? (
-          <PublicKey>{wallet.publicKey.toBase58()}</PublicKey>
+          <PublicKey>
+            {condensePublicKey(wallet.publicKey.toBase58())}
+          </PublicKey>
         ) : (
           <Button onClick={connect} type="button">
             Connect Wallet

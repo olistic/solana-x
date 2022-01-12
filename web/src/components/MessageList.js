@@ -1,5 +1,4 @@
 import React from 'react';
-import { formatRelative, toDate } from 'date-fns';
 
 import { getAvatarSrc } from '../utils/avatars';
 import { styled } from '../stitches.config';
@@ -33,7 +32,7 @@ const Author = styled('h1', {
   textTransform: 'lowercase',
 });
 
-const Timestamp = styled('p', {
+const CreatedAt = styled('p', {
   color: '$gray500',
   fontSize: '$3',
   lineHeight: 1,
@@ -47,16 +46,14 @@ const Content = styled('p', {
   margin: '$1 0 0',
 });
 
-function Message({ author, content, timestamp }) {
-  const now = new Date();
-
+function Message({ author, content, createdAt }) {
   return (
     <StyledArticle>
       <Avatar src={getAvatarSrc(author)} />
       <Container>
         <StyledHeader>
           <Author>{author}</Author>
-          <Timestamp>{formatRelative(toDate(timestamp * 1000), now)}</Timestamp>
+          <CreatedAt>{createdAt}</CreatedAt>
         </StyledHeader>
         <Content>{content}</Content>
       </Container>
@@ -82,11 +79,11 @@ function MessageList({ messages }) {
   return (
     <StyledList>
       {messages.map((message) => (
-        <StyledItem key={`${message.author}${message.timestamp}`}>
+        <StyledItem key={message.key}>
           <Message
-            author={message.author}
+            author={message.authorDisplay}
             content={message.content}
-            timestamp={message.timestamp}
+            createdAt={message.createdAt}
           />
         </StyledItem>
       ))}
