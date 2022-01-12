@@ -1,21 +1,15 @@
 import { formatRelative, toDate } from 'date-fns';
 
-import { condensePublicKey } from '../utils/publicKeys';
-
 export default class Message {
-  constructor(publicKey, accountData) {
+  constructor(publicKey, author, timestamp, content) {
     this.publicKey = publicKey;
-    this.author = accountData.author;
-    this.timestamp = accountData.timestamp.toNumber();
-    this.content = accountData.content;
+    this.author = author;
+    this.timestamp = timestamp.toNumber();
+    this.content = content;
   }
 
   get key() {
     return this.publicKey.toBase58();
-  }
-
-  get authorDisplay() {
-    return condensePublicKey(this.author.toBase58());
   }
 
   get createdAt() {

@@ -1,8 +1,7 @@
 export default class Profile {
-  constructor(publicKey, accountData) {
+  constructor(publicKey, name) {
     this.publicKey = publicKey;
-    this.owner = accountData.owner;
-    this.name = accountData.name;
+    this.name = name;
   }
 
   get key() {

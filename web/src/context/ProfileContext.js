@@ -14,19 +14,24 @@ export function ProfileProvider({ children }) {
   const workspace = useWorkspace();
 
   // Update profile on workspace changes.
-  const { connected } = useWallet();
+  const { connected, publicKey } = useWallet();
   useEffect(() => {
     const updateProfile = async () => {
-      setProfile(await fetchProfile(workspace));
+      setProfile(await fetchProfile(workspace, publicKey));
+      setLoaded(true);
+    };
+
+    const clearProfile = () => {
+      setProfile(null);
       setLoaded(true);
     };
 
     if (connected) {
       updateProfile();
     } else {
-      setProfile(null);
+      clearProfile();
     }
-  }, [connected, workspace]);
+  }, [workspace, connected, publicKey]);
 
   const createAndUpdateProfile = useCallback(
     async (name) => {

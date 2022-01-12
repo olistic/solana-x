@@ -3,12 +3,12 @@ import { web3 } from '@project-serum/anchor';
 import Message from '../models/Message';
 import Profile from '../models/Profile';
 
-export const fetchProfile = async ({ wallet, program }) => {
+export const fetchProfile = async ({ program }, publicKey) => {
   const profiles = await program.account.profile.all([
     {
       memcmp: {
         offset: 8, // Discriminator.
-        bytes: wallet.publicKey.toBase58(),
+        bytes: publicKey.toBase58(),
       },
     },
   ]);
@@ -18,7 +18,7 @@ export const fetchProfile = async ({ wallet, program }) => {
   }
 
   const profile = profiles[0];
-  return new Profile(profile.publicKey, profile.account);
+  return new Profile(profile.publicKey, profile.account.name);
 };
 
 export const createProfile = async ({ wallet, program }, name) => {
@@ -32,13 +32,22 @@ export const createProfile = async ({ wallet, program }, name) => {
     signers: [profile],
   });
   const profileAccount = await program.account.profile.fetch(profile.publicKey);
-  return new Profile(profile.publicKey, profileAccount);
+  return new Profile(profile.publicKey, profileAccount.name);
 };
 
 export const fetchMessages = async ({ program }) => {
   const messages = await program.account.message.all();
-  return messages.map(
-    (message) => new Message(message.publicKey, message.account),
+  return Promise.all(
+    messages.map(async (message) => {
+      const messageAccount = message.account;
+      const author = await fetchProfile({ program }, messageAccount.author);
+      return new Message(
+        message.publicKey,
+        author,
+        messageAccount.timestamp,
+        messageAccount.content,
+      );
+    }),
   );
 };
 
@@ -53,5 +62,11 @@ export const postMessage = async ({ wallet, program }, content) => {
     signers: [message],
   });
   const messageAccount = await program.account.message.fetch(message.publicKey);
-  return new Message(message.publicKey, messageAccount);
+  const author = await fetchProfile({ program }, messageAccount.author);
+  return new Message(
+    message.publicKey,
+    author,
+    messageAccount.timestamp,
+    messageAccount.content,
+  );
 };

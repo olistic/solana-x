@@ -77,7 +77,7 @@ function MessageList({ messages }) {
       {messages.map((message) => (
         <StyledItem key={message.key}>
           <Message
-            author={message.authorDisplay}
+            author={message.author.name}
             content={message.content}
             createdAt={message.createdAt}
           />
