@@ -1,9 +1,8 @@
 import React from 'react';
 
-import Button from './Button';
+import ConnectWalletButton from './ConnectWalletButton';
+import Profile from './Profile';
 import useWallet from '../hooks/useWallet';
-import useWorkspace from '../hooks/useWorkspace';
-import { condensePublicKey } from '../utils/publicKeys';
 import { styled } from '../stitches.config';
 
 const StyledHeader = styled('header', {
@@ -21,33 +20,13 @@ const Heading = styled('h1', {
   textTransform: 'lowercase',
 });
 
-const PublicKey = styled('p', {
-  fontFamily: '$mono',
-  fontSize: '$1',
-  lineHeight: 1,
-  margin: 0,
-});
-
 function Header() {
-  const { connect, connected } = useWallet();
-  const { wallet } = useWorkspace();
+  const { connected } = useWallet();
 
   return (
     <StyledHeader>
-      <div>
-        <Heading>Solana Message Wall</Heading>
-      </div>
-      <div>
-        {connected ? (
-          <PublicKey>
-            {condensePublicKey(wallet.publicKey.toBase58())}
-          </PublicKey>
-        ) : (
-          <Button onClick={connect} type="button">
-            Connect Wallet
-          </Button>
-        )}
-      </div>
+      <Heading>Solana Message Wall</Heading>
+      {connected ? <Profile /> : <ConnectWalletButton />}
     </StyledHeader>
   );
 }
