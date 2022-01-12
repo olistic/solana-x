@@ -45,8 +45,6 @@ export function WalletProvider({ children }) {
   const value = useMemo(
     () => ({
       connected: !!publicKey,
-      // connecting, // TODO.
-      // disconnecting, // TODO.
       connect,
       disconnect,
       publicKey,

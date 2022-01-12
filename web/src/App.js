@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import Header from './components/Header';
 import MessageForm from './components/MessageForm';
 import MessageList from './components/MessageList';
+import useMessages from './hooks/useMessages';
 import useWallet from './hooks/useWallet';
-import useWorkspace from './hooks/useWorkspace';
-import { fetchMessages, postMessage } from './api';
 import { styled } from './stitches.config';
 
 const Container = styled('div', {
@@ -33,23 +32,8 @@ const MessageFormWrapper = styled('div', {
 
 function App() {
   const { connected } = useWallet();
-  const workspace = useWorkspace();
 
-  const [messages, setMessages] = useState([]);
-
-  useEffect(() => {
-    const updateMessages = async () => {
-      const fetchedMessages = await fetchMessages(workspace);
-      setMessages(fetchedMessages);
-    };
-
-    updateMessages();
-  }, [workspace]);
-
-  const handleMessagePost = async (content) => {
-    const newMessage = await postMessage(workspace, content);
-    setMessages([newMessage, ...messages]);
-  };
+  const { messages, postMessage } = useMessages();
 
   return (
     <Container>
@@ -58,7 +42,7 @@ function App() {
         <Main>
           {connected && (
             <MessageFormWrapper>
-              <MessageForm onMessagePost={handleMessagePost} />
+              <MessageForm onMessagePost={postMessage} />
             </MessageFormWrapper>
           )}
           <MessageList messages={messages} />
