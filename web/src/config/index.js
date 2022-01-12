@@ -1,5 +1,4 @@
-const { CLUSTER } = process.env;
-
+const CLUSTER = process.env.REACT_APP_CLUSTER;
 export const CLUSTER_URL =
   CLUSTER === 'mainnet'
     ? 'https://api.mainnet-beta.solana.com'
