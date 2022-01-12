@@ -7,6 +7,51 @@ describe('tutorial', () => {
   anchor.setProvider(anchor.Provider.env());
   const program = anchor.workspace.Tutorial;
 
+  it('can create a new profile', async () => {
+    // Call the `CreateProfile` instruction.
+    const profile = anchor.web3.Keypair.generate();
+    await program.rpc.createProfile('Adam', {
+      accounts: {
+        profile: profile.publicKey,
+        owner: program.provider.wallet.publicKey,
+        systemProgram: anchor.web3.SystemProgram.programId,
+      },
+      signers: [profile],
+    });
+
+    // Fetch the account details of the created profile.
+    const profileAccount = await program.account.profile.fetch(
+      profile.publicKey,
+    );
+
+    // Ensure it has the right data.
+    assert.equal(
+      profileAccount.owner.toBase58(),
+      program.provider.wallet.publicKey.toBase58(),
+    );
+    assert.equal(profileAccount.name, 'Adam');
+  });
+
+  it('can fetch a profile by owner', async () => {
+    const ownerPublicKey = program.provider.wallet.publicKey;
+    const profileAccounts = await program.account.profile.all([
+      {
+        memcmp: {
+          offset: 8, // Discriminator.
+          bytes: ownerPublicKey.toBase58(),
+        },
+      },
+    ]);
+
+    assert.equal(profileAccounts.length, 1);
+    assert.ok(
+      profileAccounts.every(
+        (profileAccount) =>
+          profileAccount.account.owner.toBase58() === ownerPublicKey.toBase58(),
+      ),
+    );
+  });
+
   it('can post a new message', async () => {
     // Call the `PostMessage` instruction.
     const message = anchor.web3.Keypair.generate();
