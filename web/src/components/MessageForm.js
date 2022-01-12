@@ -18,12 +18,7 @@ function MessageForm({ onMessagePost }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const newMessage = {
-      author: 'john',
-      content,
-      createdAt: new Date(),
-    };
-    await onMessagePost(newMessage);
+    await onMessagePost(content);
 
     // Reset form.
     setContent('');

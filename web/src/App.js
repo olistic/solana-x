@@ -5,7 +5,7 @@ import MessageForm from './components/MessageForm';
 import MessageList from './components/MessageList';
 import useWallet from './hooks/useWallet';
 import useWorkspace from './hooks/useWorkspace';
-import { fetchMessages } from './api';
+import { fetchMessages, postMessage } from './api';
 import { styled } from './stitches.config';
 
 const Container = styled('div', {
@@ -46,8 +46,8 @@ function App() {
     updateMessages();
   }, [workspace]);
 
-  const handleMessagePost = async (newMessage) => {
-    // TODO: Store message in Solana.
+  const handleMessagePost = async (content) => {
+    const newMessage = await postMessage(workspace, content);
     setMessages([newMessage, ...messages]);
   };
 

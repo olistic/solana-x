@@ -6,13 +6,15 @@ import idl from '../idl/tutorial.json';
 import useAnchorWallet from './useAnchorWallet';
 import { RPC_URL } from '../config';
 
+const preflightCommitment = 'processed';
+const commitment = 'processed';
 const programID = new PublicKey(idl.metadata.address);
 
 export default function useWorkspace() {
   const wallet = useAnchorWallet();
-  const connection = useMemo(() => new Connection(RPC_URL), []);
+  const connection = useMemo(() => new Connection(RPC_URL, commitment), []);
   const provider = useMemo(
-    () => new Provider(connection, wallet),
+    () => new Provider(connection, wallet, { preflightCommitment, commitment }),
     [connection, wallet],
   );
   const program = useMemo(
