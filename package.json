@@ -12,8 +12,7 @@
     "build:program": "anchor build",
     "clean:program": "cargo clean --manifest-path=Cargo.toml && rm -rf target",
     "deploy:program": "anchor deploy",
-    "start": "yarn workspace @buildspace-solana-web3/web start",
-    "postinstall": "cargo update --manifest-path=Cargo.toml"
+    "start": "yarn workspace @buildspace-solana-web3/web start"
   },
   "devDependencies": {
     "@project-serum/anchor": "^0.20.1",
