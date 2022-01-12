@@ -6,6 +6,7 @@
   },
   "extends": ["airbnb", "airbnb/hooks", "prettier"],
   "rules": {
+    "import/prefer-default-export": "off",
     "no-nested-ternary": "off",
     "react/jsx-filename-extension": "off",
     "react/prop-types": "off"
