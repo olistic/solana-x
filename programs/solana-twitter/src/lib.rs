@@ -7,9 +7,7 @@ declare_id!("DeWSVxoMAW52Lz49cqSLo21FujaLAeUpJnwxrsBFUFT2");
 pub mod solana_twitter {
     use super::*;
 
-    pub fn create_profile(ctx: Context<CreateProfile>, name: String) -> ProgramResult {
-        // TODO: Enforce only one profile per public key.
-
+    pub fn create_profile(ctx: Context<CreateProfile>, _bump: u8, name: String) -> ProgramResult {
         if name.chars().count() > 50 {
             return Err(ErrorCode::NameTooLong.into())
         }
@@ -41,8 +39,12 @@ pub mod solana_twitter {
 }
 
 #[derive(Accounts)]
+#[instruction(bump: u8)]
 pub struct CreateProfile<'info> {
-    #[account(init, payer = owner, space = Profile::LEN)]
+    #[account(
+        init, payer = owner, space = Profile::LEN,
+        seeds = [owner.key().as_ref(), b"profile".as_ref()], bump = bump
+    )]
     pub profile: Account<'info, Profile>,
     #[account(mut)]
     pub owner: Signer<'info>,

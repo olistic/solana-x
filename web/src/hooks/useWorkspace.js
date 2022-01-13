@@ -7,7 +7,7 @@ import useAnchorWallet from './useAnchorWallet';
 import useConnection from './useConnection';
 import { COMMITMENT, PREFLIGHT_COMMITMENT } from '../config';
 
-const programID = new PublicKey(idl.metadata.address);
+const programId = new PublicKey(idl.metadata.address);
 
 export default function useWorkspace() {
   const wallet = useAnchorWallet();
@@ -21,7 +21,7 @@ export default function useWorkspace() {
     [connection, wallet],
   );
   const program = useMemo(
-    () => new Program(idl, programID, provider),
+    () => new Program(idl, programId, provider),
     [provider],
   );
   const workspace = useMemo(

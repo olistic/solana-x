@@ -8,7 +8,7 @@
         {
           "name": "profile",
           "isMut": true,
-          "isSigner": true
+          "isSigner": false
         },
         {
           "name": "owner",
@@ -22,6 +22,10 @@
         }
       ],
       "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        },
         {
           "name": "name",
           "type": "string"

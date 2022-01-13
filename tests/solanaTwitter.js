@@ -9,47 +9,44 @@ describe('solana twitter', () => {
 
   it('can create a new profile', async () => {
     // Call the `CreateProfile` instruction.
-    const profile = anchor.web3.Keypair.generate();
-    await program.rpc.createProfile('Adam', {
+    const ownerPublicKey = program.provider.wallet.publicKey;
+    const [profilePublicKey, bump] =
+      await anchor.web3.PublicKey.findProgramAddress(
+        [ownerPublicKey.toBuffer(), Buffer.from('profile')],
+        program.programId,
+      );
+    await program.rpc.createProfile(new anchor.BN(bump), 'Adam', {
       accounts: {
-        profile: profile.publicKey,
-        owner: program.provider.wallet.publicKey,
+        profile: profilePublicKey,
+        owner: ownerPublicKey,
         systemProgram: anchor.web3.SystemProgram.programId,
       },
-      signers: [profile],
+      signers: [],
     });
 
     // Fetch the account details of the created profile.
     const profileAccount = await program.account.profile.fetch(
-      profile.publicKey,
+      profilePublicKey,
     );
 
     // Ensure it has the right data.
-    assert.equal(
-      profileAccount.owner.toBase58(),
-      program.provider.wallet.publicKey.toBase58(),
-    );
+    assert.equal(profileAccount.owner.toBase58(), ownerPublicKey.toBase58());
     assert.equal(profileAccount.name, 'Adam');
   });
 
-  it('can fetch a profile by owner', async () => {
+  it('can get a profile by owner', async () => {
     const ownerPublicKey = program.provider.wallet.publicKey;
-    const profileAccounts = await program.account.profile.all([
-      {
-        memcmp: {
-          offset: 8, // Discriminator.
-          bytes: ownerPublicKey.toBase58(),
-        },
-      },
-    ]);
-
-    assert.equal(profileAccounts.length, 1);
-    assert.ok(
-      profileAccounts.every(
-        (profileAccount) =>
-          profileAccount.account.owner.toBase58() === ownerPublicKey.toBase58(),
-      ),
+    const [profilePublicKey] = await anchor.web3.PublicKey.findProgramAddress(
+      [ownerPublicKey.toBuffer(), Buffer.from('profile')],
+      program.programId,
     );
+
+    const profileAccount = await program.account.profile.fetch(
+      profilePublicKey,
+    );
+
+    // Ensure it has the right data.
+    assert.equal(profileAccount.owner.toBase58(), ownerPublicKey.toBase58());
   });
 
   it('can send a new tweet', async () => {
