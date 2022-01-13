@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import useWallet from '../hooks/useWallet';
 import useWorkspace from '../hooks/useWorkspace';
-import { createProfile, fetchProfile } from '../api';
+import { createProfile, getProfile } from '../api';
 
 const ProfileContext = React.createContext();
 
@@ -17,7 +17,7 @@ export function ProfileProvider({ children }) {
   const { connected, publicKey } = useWallet();
   useEffect(() => {
     const updateProfile = async () => {
-      setProfile(await fetchProfile(workspace, publicKey));
+      setProfile(await getProfile(workspace, publicKey));
       setLoaded(true);
     };
 

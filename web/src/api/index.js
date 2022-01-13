@@ -3,15 +3,15 @@ import { web3 } from '@project-serum/anchor';
 import Message from '../models/Message';
 import Profile from '../models/Profile';
 
-export const fetchProfile = async ({ program }, publicKey) => {
-  const profiles = await program.account.profile.all([
-    {
-      memcmp: {
-        offset: 8, // Discriminator.
-        bytes: publicKey.toBase58(),
-      },
+export const getProfile = async ({ program }, ownerPublicKey) => {
+  const ownerFilter = {
+    memcmp: {
+      offset: 8, // Discriminator.
+      bytes: ownerPublicKey.toBase58(),
     },
-  ]);
+  };
+
+  const profiles = await program.account.profile.all([ownerFilter]);
 
   if (profiles.length === 0) {
     return null;
@@ -23,6 +23,7 @@ export const fetchProfile = async ({ program }, publicKey) => {
 
 export const createProfile = async ({ wallet, program }, name) => {
   const profile = web3.Keypair.generate();
+
   await program.rpc.createProfile(name, {
     accounts: {
       profile: profile.publicKey,
@@ -31,7 +32,9 @@ export const createProfile = async ({ wallet, program }, name) => {
     },
     signers: [profile],
   });
+
   const profileAccount = await program.account.profile.fetch(profile.publicKey);
+
   return new Profile(profile.publicKey, profileAccount.name);
 };
 
@@ -40,7 +43,10 @@ export const fetchMessages = async ({ program }) => {
   return Promise.all(
     messages.map(async (message) => {
       const messageAccount = message.account;
-      const author = await fetchProfile({ program }, messageAccount.author);
+
+      const authorPublicKey = messageAccount.author;
+      const author = await getProfile({ program }, authorPublicKey);
+
       return new Message(
         message.publicKey,
         author,
@@ -53,6 +59,7 @@ export const fetchMessages = async ({ program }) => {
 
 export const postMessage = async ({ wallet, program }, content) => {
   const message = web3.Keypair.generate();
+
   await program.rpc.postMessage(content, {
     accounts: {
       message: message.publicKey,
@@ -61,8 +68,12 @@ export const postMessage = async ({ wallet, program }, content) => {
     },
     signers: [message],
   });
+
   const messageAccount = await program.account.message.fetch(message.publicKey);
-  const author = await fetchProfile({ program }, messageAccount.author);
+
+  const authorPublicKey = messageAccount.author;
+  const author = await getProfile({ program }, authorPublicKey);
+
   return new Message(
     message.publicKey,
     author,
