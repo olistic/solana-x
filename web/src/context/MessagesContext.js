@@ -14,7 +14,10 @@ export function MessagesProvider({ children }) {
   useEffect(() => {
     const updateMessages = async () => {
       const fetchedMessages = await fetchMessages(workspace);
-      setMessages(fetchedMessages);
+      const sortedMessages = fetchedMessages.sort(
+        (a, b) => b.timestamp - a.timestamp,
+      );
+      setMessages(sortedMessages);
     };
 
     updateMessages();
