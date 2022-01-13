@@ -30,10 +30,12 @@ const Author = styled('h1', {
 
 const CreatedAt = styled('p', {
   color: '$gray500',
-  fontSize: '$3',
+  fontSize: '$2',
   lineHeight: 1,
   margin: '0 0 0 $1',
+  position: 'relative',
   textTransform: 'lowercase',
+  top: '1px', // Adjust vertical alignment.
 });
 
 const Content = styled('p', {
@@ -49,7 +51,7 @@ function Message({ author, content, createdAt }) {
       <Container>
         <StyledHeader>
           <Author>{author}</Author>
-          <CreatedAt>{createdAt}</CreatedAt>
+          <CreatedAt>• {createdAt}</CreatedAt>
         </StyledHeader>
         <Content>{content}</Content>
       </Container>
