@@ -67,9 +67,9 @@ function App() {
       <Header />
       <ScrollableContainer>
         <Main>
-          {loaded && !connected && <NotConnected />}
-          {loaded && connected && !hasProfile && <NoProfile />}
-          {loaded && connected && hasProfile && <ConnectedAndProfile />}
+          {!connected && <NotConnected />}
+          {connected && loaded && !hasProfile && <NoProfile />}
+          {connected && loaded && hasProfile && <ConnectedAndProfile />}
         </Main>
       </ScrollableContainer>
     </Container>
