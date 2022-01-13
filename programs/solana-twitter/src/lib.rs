@@ -4,7 +4,7 @@ use anchor_lang::solana_program::system_program;
 declare_id!("FdjuHUPyrqsdY9nQzGE8WzZfjMwUyutAMbTCgEtwCgPe");
 
 #[program]
-pub mod tutorial {
+pub mod solana_twitter {
     use super::*;
 
     pub fn create_profile(ctx: Context<CreateProfile>, name: String) -> ProgramResult {
@@ -23,18 +23,18 @@ pub mod tutorial {
         Ok(())
     }
 
-    pub fn post_message(ctx: Context<PostMessage>, content: String) -> ProgramResult {
+    pub fn send_tweet(ctx: Context<SendTweet>, content: String) -> ProgramResult {
         if content.chars().count() > 280 {
             return Err(ErrorCode::ContentTooLong.into())
         }
 
-        let message: &mut Account<Message> = &mut ctx.accounts.message;
+        let tweet: &mut Account<Tweet> = &mut ctx.accounts.tweet;
         let author: &Signer = &ctx.accounts.author;
         let clock: Clock = Clock::get().unwrap();
 
-        message.author = *author.key;
-        message.timestamp = clock.unix_timestamp;
-        message.content = content;
+        tweet.author = *author.key;
+        tweet.timestamp = clock.unix_timestamp;
+        tweet.content = content;
 
         Ok(())
     }
@@ -51,9 +51,9 @@ pub struct CreateProfile<'info> {
 }
 
 #[derive(Accounts)]
-pub struct PostMessage<'info> {
-    #[account(init, payer = author, space = Message::LEN)]
-    pub message: Account<'info, Message>,
+pub struct SendTweet<'info> {
+    #[account(init, payer = author, space = Tweet::LEN)]
+    pub tweet: Account<'info, Tweet>,
     #[account(mut)]
     pub author: Signer<'info>,
     #[account(address = system_program::ID)]
@@ -67,7 +67,7 @@ pub struct Profile {
 }
 
 #[account]
-pub struct Message {
+pub struct Tweet {
     pub author: Pubkey,
     pub timestamp: i64,
     pub content: String,
@@ -86,7 +86,7 @@ impl Profile {
         + STRING_LENGTH_PREFIX + MAX_NAME_LENGTH; // Name.
 }
 
-impl Message {
+impl Tweet {
     const LEN: usize = DISCRIMINATOR_LENGTH
         + PUBLIC_KEY_LENGTH // Author.
         + TIMESTAMP_LENGTH // Timestamp.

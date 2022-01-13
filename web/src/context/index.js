@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { MessagesProvider } from './MessagesContext';
+import { TweetsProvider } from './TweetsContext';
 import { ProfileProvider } from './ProfileContext';
 import { WalletProvider } from './WalletContext';
 
@@ -8,7 +8,7 @@ function AppContext({ children }) {
   return (
     <WalletProvider>
       <ProfileProvider>
-        <MessagesProvider>{children}</MessagesProvider>
+        <TweetsProvider>{children}</TweetsProvider>
       </ProfileProvider>
     </WalletProvider>
   );

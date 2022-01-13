@@ -1,5 +1,5 @@
 {
-  "name": "@buildspace-solana-web3/web",
+  "name": "@solana-twitter/web",
   "version": "0.0.1",
   "private": true,
   "dependencies": {

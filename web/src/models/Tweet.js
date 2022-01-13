@@ -1,6 +1,6 @@
 import { formatRelative, toDate } from 'date-fns';
 
-export default class Message {
+export default class Tweet {
   constructor(publicKey, author, timestamp, content) {
     this.publicKey = publicKey;
     this.author = author;

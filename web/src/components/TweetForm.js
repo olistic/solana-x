@@ -12,7 +12,7 @@ const StyledTextField = styled(TextField, {
   flex: 1,
 });
 
-function MessageForm({ onSubmit }) {
+function TweetForm({ onSubmit }) {
   const [content, setContent] = useState('');
 
   const handleSubmit = async (event) => {
@@ -31,9 +31,9 @@ function MessageForm({ onSubmit }) {
         placeholder="type your message"
         value={content}
       />
-      <Button>Post</Button>
+      <Button>Tweet</Button>
     </StyledForm>
   );
 }
 
-export default MessageForm;
+export default TweetForm;

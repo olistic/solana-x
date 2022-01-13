@@ -44,7 +44,7 @@ const Content = styled('p', {
   margin: '$1 0 0',
 });
 
-function Message({ author, content, createdAt }) {
+function Tweet({ author, content, createdAt }) {
   return (
     <StyledArticle>
       <Avatar id={author} />
@@ -73,12 +73,12 @@ const StyledItem = styled('li', {
   },
 });
 
-function MessageList({ messages }) {
+function TweetList({ tweets }) {
   return (
     <StyledList>
-      {messages.map((message) => (
+      {tweets.map((message) => (
         <StyledItem key={message.key}>
-          <Message
+          <Tweet
             author={message.author.name}
             content={message.content}
             createdAt={message.createdAt}
@@ -89,4 +89,4 @@ function MessageList({ messages }) {
   );
 }
 
-export default MessageList;
+export default TweetList;

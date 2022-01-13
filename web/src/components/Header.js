@@ -25,7 +25,7 @@ function Header() {
 
   return (
     <StyledHeader>
-      <Heading>Solana Message Wall</Heading>
+      <Heading>Solana Twitter</Heading>
       {connected ? <Profile /> : <ConnectWalletButton />}
     </StyledHeader>
   );

@@ -1,11 +1,11 @@
 [programs.localnet]
-tutorial = "FdjuHUPyrqsdY9nQzGE8WzZfjMwUyutAMbTCgEtwCgPe"
+solana_twitter = "FdjuHUPyrqsdY9nQzGE8WzZfjMwUyutAMbTCgEtwCgPe"
 
 [programs.devnet]
-tutorial = "FdjuHUPyrqsdY9nQzGE8WzZfjMwUyutAMbTCgEtwCgPe"
+solana_twitter = "FdjuHUPyrqsdY9nQzGE8WzZfjMwUyutAMbTCgEtwCgPe"
 
 [programs.mainnet]
-tutorial = "FdjuHUPyrqsdY9nQzGE8WzZfjMwUyutAMbTCgEtwCgPe"
+solana_twitter = "FdjuHUPyrqsdY9nQzGE8WzZfjMwUyutAMbTCgEtwCgPe"
 
 [registry]
 url = "https://anchor.projectserum.com"
@@ -16,4 +16,4 @@ wallet = "/Users/oli/.config/solana/id.json"
 
 [scripts]
 test = "yarn run mocha -t 1000000 tests/"
-copy-idl = "mkdir -p web/src/idl && cp target/idl/tutorial.json web/src/idl/tutorial.json"
+copy-idl = "mkdir -p web/src/idl && cp target/idl/solana_twitter.json web/src/idl/solana_twitter.json"

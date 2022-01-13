@@ -1,11 +1,11 @@
 import React from 'react';
 
 import Header from './components/Header';
-import MessageForm from './components/MessageForm';
-import MessageList from './components/MessageList';
 import ProfileForm from './components/ProfileForm';
-import useMessages from './hooks/useMessages';
+import TweetForm from './components/TweetForm';
+import TweetList from './components/TweetList';
 import useProfile from './hooks/useProfile';
+import useTweets from './hooks/useTweets';
 import useWallet from './hooks/useWallet';
 import { styled } from './stitches.config';
 
@@ -28,14 +28,10 @@ const Main = styled('main', {
   width: '100%',
 });
 
-const MessageFormWrapper = styled('div', {
-  marginBottom: '$4',
-});
-
 function NotConnected() {
-  const { messages } = useMessages();
+  const { tweets } = useTweets();
 
-  return <MessageList messages={messages} />;
+  return <TweetList tweets={tweets} />;
 }
 
 function NoProfile() {
@@ -44,15 +40,19 @@ function NoProfile() {
   return <ProfileForm onSubmit={createProfile} />;
 }
 
+const TweetFormWrapper = styled('div', {
+  marginBottom: '$4',
+});
+
 function ConnectedAndProfile() {
-  const { messages, postMessage } = useMessages();
+  const { tweets, sendTweet } = useTweets();
 
   return (
     <>
-      <MessageFormWrapper>
-        <MessageForm onSubmit={postMessage} />
-      </MessageFormWrapper>
-      <MessageList messages={messages} />
+      <TweetFormWrapper>
+        <TweetForm onSubmit={sendTweet} />
+      </TweetFormWrapper>
+      <TweetList tweets={tweets} />
     </>
   );
 }

@@ -2,7 +2,7 @@ import { PublicKey } from '@solana/web3.js';
 import { Program, Provider } from '@project-serum/anchor';
 import { useMemo } from 'react';
 
-import idl from '../idl/tutorial.json';
+import idl from '../idl/solana_twitter.json';
 import useAnchorWallet from './useAnchorWallet';
 import useConnection from './useConnection';
 import { COMMITMENT, PREFLIGHT_COMMITMENT } from '../config';

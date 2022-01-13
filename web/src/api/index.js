@@ -1,7 +1,7 @@
 import { web3 } from '@project-serum/anchor';
 
-import Message from '../models/Message';
 import Profile from '../models/Profile';
+import Tweet from '../models/Tweet';
 
 export const getProfile = async ({ program }, ownerPublicKey) => {
   const ownerFilter = {
@@ -38,46 +38,46 @@ export const createProfile = async ({ wallet, program }, name) => {
   return new Profile(profile.publicKey, profileAccount.name);
 };
 
-export const fetchMessages = async ({ program }) => {
-  const messages = await program.account.message.all();
+export const fetchTweets = async ({ program }) => {
+  const tweets = await program.account.tweet.all();
   return Promise.all(
-    messages.map(async (message) => {
-      const messageAccount = message.account;
+    tweets.map(async (tweet) => {
+      const tweetAccount = tweet.account;
 
-      const authorPublicKey = messageAccount.author;
+      const authorPublicKey = tweetAccount.author;
       const author = await getProfile({ program }, authorPublicKey);
 
-      return new Message(
-        message.publicKey,
+      return new Tweet(
+        tweet.publicKey,
         author,
-        messageAccount.timestamp,
-        messageAccount.content,
+        tweetAccount.timestamp,
+        tweetAccount.content,
       );
     }),
   );
 };
 
-export const postMessage = async ({ wallet, program }, content) => {
-  const message = web3.Keypair.generate();
+export const sendTweet = async ({ wallet, program }, content) => {
+  const tweet = web3.Keypair.generate();
 
-  await program.rpc.postMessage(content, {
+  await program.rpc.sendTweet(content, {
     accounts: {
-      message: message.publicKey,
+      tweet: tweet.publicKey,
       author: wallet.publicKey,
       systemProgram: web3.SystemProgram.programId,
     },
-    signers: [message],
+    signers: [tweet],
   });
 
-  const messageAccount = await program.account.message.fetch(message.publicKey);
+  const tweetAccount = await program.account.tweet.fetch(tweet.publicKey);
 
-  const authorPublicKey = messageAccount.author;
+  const authorPublicKey = tweetAccount.author;
   const author = await getProfile({ program }, authorPublicKey);
 
-  return new Message(
-    message.publicKey,
+  return new Tweet(
+    tweet.publicKey,
     author,
-    messageAccount.timestamp,
-    messageAccount.content,
+    tweetAccount.timestamp,
+    tweetAccount.content,
   );
 };

@@ -1,6 +1,6 @@
 {
   "version": "0.0.1",
-  "name": "tutorial",
+  "name": "solana_twitter",
   "instructions": [
     {
       "name": "createProfile",
@@ -29,10 +29,10 @@
       ]
     },
     {
-      "name": "postMessage",
+      "name": "sendTweet",
       "accounts": [
         {
-          "name": "message",
+          "name": "tweet",
           "isMut": true,
           "isSigner": true
         },
@@ -73,7 +73,7 @@
       }
     },
     {
-      "name": "Message",
+      "name": "Tweet",
       "type": {
         "kind": "struct",
         "fields": [
