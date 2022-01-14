@@ -14,6 +14,8 @@ function Author() {
   const [author, setAuthor] = useState(null);
   const [tweets, setTweets] = useState([]);
 
+  const [loaded, setLoaded] = useState(false);
+
   const workspace = useWorkspace();
   useEffect(() => {
     const authorPublicKey = new PublicKey(authorId);
@@ -30,9 +32,13 @@ function Author() {
       setTweets(fetchedTweets);
     };
 
-    updateAuthor();
-    updateTweets();
+    Promise.all([updateAuthor(), updateTweets()]).then(() => setLoaded(true));
   }, [workspace, authorId]);
+
+  if (!loaded) {
+    // TODO: Render spinner.
+    return null;
+  }
 
   if (!author) {
     return <NoMatch />;

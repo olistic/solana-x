@@ -12,6 +12,8 @@ function Tweet() {
 
   const [tweet, setTweet] = useState(null);
 
+  const [loaded, setLoaded] = useState(false);
+
   const workspace = useWorkspace();
   useEffect(() => {
     const updateTweet = async () => {
@@ -19,8 +21,13 @@ function Tweet() {
       setTweet(fetchedTweet);
     };
 
-    updateTweet();
+    updateTweet().then(() => setLoaded(true));
   }, [workspace, tweetId]);
+
+  if (!loaded) {
+    // TODO: Render spinner.
+    return null;
+  }
 
   if (!tweet) {
     return <NoMatch />;
