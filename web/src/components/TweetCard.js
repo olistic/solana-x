@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Avatar from './Avatar';
+import MaybeLink from './MaybeLink';
 import { styled } from '../stitches.config';
 
 const StyledArticle = styled('article', {
@@ -44,14 +45,16 @@ const Content = styled('p', {
   margin: '$1 0 0',
 });
 
-function TweetCard({ author, content, createdAt }) {
+function TweetCard({ author, content, createdAt, id }) {
   return (
     <StyledArticle>
       <Avatar id={author} />
       <Container>
         <StyledHeader>
           <Author>{author}</Author>
-          <CreatedAt>• {createdAt}</CreatedAt>
+          <CreatedAt>
+            • <MaybeLink to={`/tweets/${id}`}>{createdAt}</MaybeLink>
+          </CreatedAt>
         </StyledHeader>
         <Content>{content}</Content>
       </Container>

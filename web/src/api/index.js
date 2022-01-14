@@ -59,6 +59,11 @@ export const fetchTweets = async ({ program }) => {
   );
 };
 
+export const getTweet = async ({ program }, publicKey) => {
+  const tweetAccount = await program.account.tweet.fetch(publicKey);
+  return buildTweet({ program }, publicKey, tweetAccount);
+};
+
 export const sendTweet = async ({ wallet, program }, content) => {
   const tweet = web3.Keypair.generate();
 

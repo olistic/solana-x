@@ -26,6 +26,7 @@ function TweetList({ tweets }) {
             author={tweet.author.name}
             content={tweet.content}
             createdAt={tweet.createdAt}
+            id={tweet.id}
           />
         </StyledItem>
       ))}

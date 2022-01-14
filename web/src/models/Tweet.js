@@ -8,7 +8,7 @@ export default class Tweet {
     this.content = content;
   }
 
-  get key() {
+  get id() {
     return this.publicKey.toBase58();
   }
 

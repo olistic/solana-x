@@ -6,6 +6,7 @@ import App from './App';
 import AppContext from './context';
 import Home from './screens/Home';
 import NoMatch from './screens/NoMatch';
+import Tweet from './screens/Tweet';
 import globalStyles from './globalStyles';
 
 function Root() {
@@ -18,6 +19,7 @@ function Root() {
           <Routes>
             <Route path="/" element={<App />}>
               <Route index element={<Home />} />
+              <Route path="/tweets/:tweetId" element={<Tweet />} />
               <Route path="*" element={<NoMatch />} />
             </Route>
           </Routes>
