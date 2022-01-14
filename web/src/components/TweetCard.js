@@ -48,10 +48,12 @@ const Content = styled('p', {
 function TweetCard({ author, content, createdAt, id }) {
   return (
     <StyledArticle>
-      <Avatar id={author} />
+      <Avatar id={author.name} />
       <Container>
         <StyledHeader>
-          <Author>{author}</Author>
+          <Author>
+            <MaybeLink to={`/authors/${author.id}`}>{author.name}</MaybeLink>
+          </Author>
           <CreatedAt>
             • <MaybeLink to={`/tweets/${id}`}>{createdAt}</MaybeLink>
           </CreatedAt>

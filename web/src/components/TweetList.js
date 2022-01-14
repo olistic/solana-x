@@ -23,7 +23,7 @@ function TweetList({ tweets }) {
       {tweets.map((tweet) => (
         <StyledItem key={tweet.id}>
           <TweetCard
-            author={tweet.author.name}
+            author={tweet.author}
             content={tweet.content}
             createdAt={tweet.createdAt}
             id={tweet.id}

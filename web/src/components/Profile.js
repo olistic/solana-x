@@ -25,6 +25,7 @@ const Name = styled('p', {
 });
 
 const PublicKey = styled('p', {
+  color: '$gray800',
   fontFamily: '$mono',
   fontSize: '$1',
   lineHeight: 1,

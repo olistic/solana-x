@@ -50,8 +50,15 @@ const buildTweet = async ({ program }, publicKey, tweetAccount) => {
   return new Tweet(publicKey, author, timestamp, content);
 };
 
-export const fetchTweets = async ({ program }) => {
-  const tweets = await program.account.tweet.all();
+export const authorFilter = (authorPublicKey) => ({
+  memcmp: {
+    offset: 8, // Discriminator.
+    bytes: authorPublicKey.toBase58(),
+  },
+});
+
+export const fetchTweets = async ({ program }, filters = []) => {
+  const tweets = await program.account.tweet.all(filters);
   return Promise.all(
     tweets.map((tweet) =>
       buildTweet({ program }, tweet.publicKey, tweet.account),
