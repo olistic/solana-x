@@ -2,6 +2,7 @@ import React from 'react';
 
 import Avatar from './Avatar';
 import MaybeLink from './MaybeLink';
+import useWallet from '../hooks/useWallet';
 import { styled } from '../stitches.config';
 
 const StyledArticle = styled('article', {
@@ -46,16 +47,24 @@ const Content = styled('p', {
 });
 
 function TweetCard({ author, content, createdAt, id }) {
+  const { publicKey } = useWallet();
+  const authorLink =
+    publicKey && publicKey.toBase58() === author.owner.toBase58()
+      ? '/profile' // Tweet belongs to current user.
+      : `/authors/${author.id}`;
+
+  const tweetLink = `/tweets/${id}`;
+
   return (
     <StyledArticle>
       <Avatar id={author.name} />
       <Container>
         <StyledHeader>
           <Author>
-            <MaybeLink to={`/authors/${author.id}`}>{author.name}</MaybeLink>
+            <MaybeLink to={authorLink}>{author.name}</MaybeLink>
           </Author>
           <CreatedAt>
-            • <MaybeLink to={`/tweets/${id}`}>{createdAt}</MaybeLink>
+            • <MaybeLink to={tweetLink}>{createdAt}</MaybeLink>
           </CreatedAt>
         </StyledHeader>
         <Content>{content}</Content>

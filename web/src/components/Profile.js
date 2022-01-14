@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Avatar from './Avatar';
+import MaybeLink from './MaybeLink';
 import useProfile from '../hooks/useProfile';
 import useWallet from '../hooks/useWallet';
 import { condensePublicKey } from '../utils/publicKeys';
@@ -44,13 +45,15 @@ function Profile() {
   const { name } = profile;
 
   return (
-    <Row>
-      <Avatar id={name} size="sm" />
-      <Column>
-        <Name>{name}</Name>
-        <PublicKey>{condensePublicKey(publicKey.toBase58())}</PublicKey>
-      </Column>
-    </Row>
+    <MaybeLink to="/profile">
+      <Row>
+        <Avatar id={name} size="sm" />
+        <Column>
+          <Name>{name}</Name>
+          <PublicKey>{condensePublicKey(publicKey.toBase58())}</PublicKey>
+        </Column>
+      </Row>
+    </MaybeLink>
   );
 }
 

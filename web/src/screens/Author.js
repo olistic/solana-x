@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import NoMatch from './NoMatch';
 import AuthorHeader from '../components/AuthorHeader';
 import TweetList from '../components/TweetList';
+import useWallet from '../hooks/useWallet';
 import useWorkspace from '../hooks/useWorkspace';
 import { authorFilter, fetchTweets, getProfile } from '../api';
 
@@ -17,8 +18,10 @@ function Author() {
   const [loaded, setLoaded] = useState(false);
 
   const workspace = useWorkspace();
+  const { publicKey } = useWallet();
   useEffect(() => {
-    const authorPublicKey = new PublicKey(authorId);
+    // `authorId` is `undefined` in `/profile`, fall back to the public key.
+    const authorPublicKey = authorId ? new PublicKey(authorId) : publicKey;
 
     const updateAuthor = async () => {
       const fetchedAuthor = await getProfile(workspace, authorPublicKey);
@@ -33,7 +36,7 @@ function Author() {
     };
 
     Promise.all([updateAuthor(), updateTweets()]).then(() => setLoaded(true));
-  }, [workspace, authorId]);
+  }, [workspace, publicKey, authorId]);
 
   if (!loaded) {
     // TODO: Render spinner.

@@ -20,6 +20,7 @@ function Root() {
           <Routes>
             <Route path="/" element={<App />}>
               <Route index element={<Home />} />
+              <Route path="/profile" element={<Author />} />
               <Route path="/authors/:authorId" element={<Author />} />
               <Route path="/tweets/:tweetId" element={<Tweet />} />
               <Route path="*" element={<NoMatch />} />
