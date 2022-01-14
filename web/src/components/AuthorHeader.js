@@ -3,9 +3,10 @@ import React from 'react';
 import { styled } from '../stitches.config';
 
 const Container = styled('div', {
+  borderBottom: '1px solid $gray200',
   display: 'flex',
   flexDirection: 'column',
-  paddingBottom: '$4',
+  paddingBottom: '$2',
 });
 
 const Name = styled('h1', {
