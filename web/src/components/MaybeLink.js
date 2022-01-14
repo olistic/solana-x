@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+import { useMatch, useResolvedPath } from 'react-router-dom';
+
+import Link from './Link';
 
 function MaybeLink({ children, to }) {
   const resolved = useResolvedPath(to);
