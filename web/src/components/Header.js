@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ConnectWalletButton from './ConnectWalletButton';
+import Link from './Link';
 import Profile from './Profile';
 import useWallet from '../hooks/useWallet';
 import { styled } from '../stitches.config';
@@ -25,7 +26,9 @@ function Header() {
 
   return (
     <StyledHeader>
-      <Heading>Solana Twitter</Heading>
+      <Heading>
+        <Link to="/">Solana Twitter</Link>
+      </Heading>
       {connected ? <Profile /> : <ConnectWalletButton />}
     </StyledHeader>
   );
