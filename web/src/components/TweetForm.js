@@ -4,6 +4,8 @@ import Button from './Button';
 import TextField from './TextField';
 import { styled } from '../stitches.config';
 
+const CHARACTER_LIMIT = 280;
+
 const StyledForm = styled('form', {
   display: 'flex',
 });
@@ -28,7 +30,8 @@ function TweetForm({ onSubmit }) {
     <StyledForm onSubmit={handleSubmit}>
       <StyledTextField
         onChange={(event) => setContent(event.target.value)}
-        placeholder="type your message"
+        maxLength={CHARACTER_LIMIT}
+        placeholder="what's happening?"
         value={content}
       />
       <Button>Tweet</Button>
