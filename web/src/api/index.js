@@ -3,74 +3,59 @@ import { BN, web3 } from '@project-serum/anchor';
 import Profile from '../models/Profile';
 import Tweet from '../models/Tweet';
 
-const getProfilePDA = (ownerPublicKey, programId) =>
+const getProfilePDA = ({ program }, ownerPublicKey) =>
   web3.PublicKey.findProgramAddress(
     [ownerPublicKey.toBuffer(), Buffer.from('profile')],
-    programId,
-  );
-
-export const getProfile = async ({ program }, ownerPublicKey) => {
-  const [profilePublicKey] = await getProfilePDA(
-    ownerPublicKey,
     program.programId,
   );
 
-  const profileAccount = await program.account.profile.fetchNullable(
-    profilePublicKey,
-  );
+// eslint-disable-next-line no-unused-vars
+const buildProfile = ({ program }, publicKey, profileAccount) => {
+  const { owner, name } = profileAccount;
+  return new Profile(publicKey, owner, name);
+};
+
+export const getProfile = async ({ program }, ownerPublicKey) => {
+  const [publicKey] = await getProfilePDA({ program }, ownerPublicKey);
+
+  const profileAccount = await program.account.profile.fetchNullable(publicKey);
   if (!profileAccount) {
     return null;
   }
 
-  return new Profile(
-    profilePublicKey,
-    profileAccount.owner,
-    profileAccount.name,
-  );
+  return buildProfile({ program }, publicKey, profileAccount);
 };
 
 export const createProfile = async ({ wallet, program }, name) => {
   const ownerPublicKey = wallet.publicKey;
 
-  const [profilePublicKey, bump] = await getProfilePDA(
-    ownerPublicKey,
-    program.programId,
-  );
+  const [publicKey, bump] = await getProfilePDA({ program }, ownerPublicKey);
 
   await program.rpc.createProfile(new BN(bump), name, {
     accounts: {
-      profile: profilePublicKey,
+      profile: publicKey,
       owner: ownerPublicKey,
       systemProgram: web3.SystemProgram.programId,
     },
     signers: [],
   });
 
-  const profileAccount = await program.account.profile.fetch(profilePublicKey);
+  const profileAccount = await program.account.profile.fetch(publicKey);
+  return buildProfile({ program }, publicKey, profileAccount);
+};
 
-  return new Profile(
-    profilePublicKey,
-    profileAccount.owner,
-    profileAccount.name,
-  );
+const buildTweet = async ({ program }, publicKey, tweetAccount) => {
+  const { author: authorPublicKey, timestamp, content } = tweetAccount;
+  const author = await getProfile({ program }, authorPublicKey);
+  return new Tweet(publicKey, author, timestamp, content);
 };
 
 export const fetchTweets = async ({ program }) => {
   const tweets = await program.account.tweet.all();
   return Promise.all(
-    tweets.map(async (tweet) => {
-      const tweetAccount = tweet.account;
-
-      const authorPublicKey = tweetAccount.author;
-      const authorProfile = await getProfile({ program }, authorPublicKey);
-
-      return new Tweet(
-        tweet.publicKey,
-        authorProfile,
-        tweetAccount.timestamp,
-        tweetAccount.content,
-      );
-    }),
+    tweets.map((tweet) =>
+      buildTweet({ program }, tweet.publicKey, tweet.account),
+    ),
   );
 };
 
@@ -87,14 +72,5 @@ export const sendTweet = async ({ wallet, program }, content) => {
   });
 
   const tweetAccount = await program.account.tweet.fetch(tweet.publicKey);
-
-  const authorPublicKey = tweetAccount.author;
-  const authorProfile = await getProfile({ program }, authorPublicKey);
-
-  return new Tweet(
-    tweet.publicKey,
-    authorProfile,
-    tweetAccount.timestamp,
-    tweetAccount.content,
-  );
+  return buildTweet({ program }, tweet.publicKey, tweetAccount);
 };
