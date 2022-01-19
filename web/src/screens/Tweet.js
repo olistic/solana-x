@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import NoMatch from './NoMatch';
 import TweetCard from '../components/TweetCard';
+import TweetHeader from '../components/TweetHeader';
 import useWorkspace from '../hooks/useWorkspace';
 import { getTweet } from '../api';
 
@@ -34,12 +35,15 @@ function Tweet() {
   }
 
   return (
-    <TweetCard
-      author={tweet.author}
-      content={tweet.content}
-      createdAt={tweet.createdAt}
-      id={tweet.id}
-    />
+    <>
+      <TweetHeader />
+      <TweetCard
+        author={tweet.author}
+        content={tweet.content}
+        createdAt={tweet.createdAt}
+        id={tweet.id}
+      />
+    </>
   );
 }
 
