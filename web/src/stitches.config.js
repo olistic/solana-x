@@ -45,9 +45,9 @@ export const {
       1: '12px',
       2: '14px',
       3: '16px',
-      4: '18px',
-      5: '20px',
-      6: '30px',
+      4: '20px',
+      5: '24px',
+      6: '32px',
     },
     fonts: {
       mono: 'Fira Mono, monospace',

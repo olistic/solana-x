@@ -2,7 +2,7 @@ import React from 'react';
 
 import { styled } from '../stitches.config';
 
-const Container = styled('div', {
+const Header = styled('header', {
   borderBottom: '1px solid $gray200',
   display: 'flex',
   flexDirection: 'column',
@@ -12,7 +12,7 @@ const Container = styled('div', {
 const Name = styled('h1', {
   fontSize: '$6',
   fontWeight: 600,
-  lineHeight: 1,
+  lineHeight: 1.25,
   margin: '0 0 $1',
 });
 
@@ -26,10 +26,10 @@ const PublicKey = styled('p', {
 
 function AuthorHeader({ author }) {
   return (
-    <Container>
+    <Header>
       <Name>{author.name}</Name>
       <PublicKey>{author.owner.toBase58()}</PublicKey>
-    </Container>
+    </Header>
   );
 }
 

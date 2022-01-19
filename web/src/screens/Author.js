@@ -35,7 +35,9 @@ function Author() {
       setTweets(fetchedTweets);
     };
 
-    Promise.all([updateAuthor(), updateTweets()]).then(() => setLoaded(true));
+    if (authorPublicKey) {
+      Promise.all([updateAuthor(), updateTweets()]).then(() => setLoaded(true));
+    }
   }, [workspace, publicKey, authorId]);
 
   if (!loaded) {

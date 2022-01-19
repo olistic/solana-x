@@ -15,7 +15,7 @@ const StyledHeader = styled('header', {
 });
 
 const Heading = styled('h1', {
-  fontSize: '$6',
+  fontSize: '$5',
   lineHeight: 1,
   margin: 0,
   textTransform: 'lowercase',

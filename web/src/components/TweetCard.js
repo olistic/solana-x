@@ -23,7 +23,7 @@ const StyledHeader = styled('header', {
 });
 
 const Author = styled('h1', {
-  fontSize: '$5',
+  fontSize: '$4',
   fontWeight: 600,
   lineHeight: 1,
   margin: 0,
@@ -42,7 +42,7 @@ const CreatedAt = styled('p', {
 
 const Content = styled('p', {
   color: '$gray800',
-  fontSize: '$4',
+  fontSize: '$3',
   margin: '$1 0 0',
 });
 
