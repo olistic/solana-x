@@ -21,7 +21,7 @@ function NoProfile() {
 }
 
 const TweetFormWrapper = styled('div', {
-  marginBottom: '$3',
+  marginBottom: '$2',
 });
 
 function ConnectedAndProfile() {
