@@ -4,11 +4,12 @@
     "jest": true,
     "mocha": true
   },
-  "extends": ["airbnb", "airbnb/hooks", "prettier"],
+  "extends": ["airbnb", "airbnb/hooks", "prettier", "plugin:react/jsx-runtime"],
   "rules": {
     "import/prefer-default-export": "off",
-    "no-nested-ternary": "off",
+    "react/function-component-definition": "off",
     "react/jsx-filename-extension": "off",
+    "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off"
   }
 }

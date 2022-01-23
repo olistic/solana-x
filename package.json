@@ -1,18 +1,14 @@
 {
   "name": "solana-twitter",
-  "version": "0.0.1",
   "description": "Twitter clone built on Solana.",
   "repository": "https://github.com/olistic/solana-twitter.git",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "lint": "eslint --cache --ext .js web/src/* && prettier --check \"web/src/**/*.js\"",
-    "lint:fix": "eslint --cache --ext .js web/src/* --fix && prettier --write \"web/src/**/*.js\"",
-    "build:program": "anchor build",
-    "clean:program": "cargo clean --manifest-path=Cargo.toml && rm -rf target",
-    "deploy:program": "anchor deploy",
-    "start": "yarn workspace @solana-twitter/web start"
+    "dev": "yarn workspace @solana-twitter/app run dev",
+    "lint": "eslint --cache --ext .js . && prettier --check \"app/**/*.js\"",
+    "lint:fix": "eslint --cache --ext .js . --fix && prettier --write \"app/**/*.js\""
   },
   "devDependencies": {
     "@project-serum/anchor": "^0.20.1",
@@ -29,6 +25,6 @@
     "prettier": "2.5.1"
   },
   "workspaces": [
-    "web"
+    "app"
   ]
 }

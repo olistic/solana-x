@@ -1,0 +1,24 @@
+{
+  "name": "@solana-twitter/app",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@project-serum/anchor": "^0.20.1",
+    "@solana/wallet-adapter-base": "^0.9.2",
+    "@solana/wallet-adapter-react": "^0.15.2",
+    "@solana/wallet-adapter-react-ui": "^0.9.3",
+    "@solana/wallet-adapter-wallets": "^0.14.2",
+    "@solana/web3.js": "^1.31.0",
+    "@stitches/react": "^1.2.6",
+    "date-fns": "^2.28.0",
+    "next": "latest",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sanitize.css": "^13.0.0"
+  }
+}

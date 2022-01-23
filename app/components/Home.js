@@ -1,0 +1,58 @@
+import { useWallet } from '@solana/wallet-adapter-react';
+
+import ProfileForm from './ProfileForm';
+import TweetForm from './TweetForm';
+import TweetList from './TweetList';
+import useProfile from '../hooks/useProfile';
+import useTweets from '../hooks/useTweets';
+import { styled } from '../stitches.config';
+
+function NotConnected() {
+  const { tweets } = useTweets();
+
+  return <TweetList tweets={tweets} />;
+}
+
+function NoProfile() {
+  const { createProfile } = useProfile();
+
+  return <ProfileForm onSubmit={createProfile} />;
+}
+
+const TweetFormWrapper = styled('div', {
+  marginBottom: '$2',
+});
+
+function ConnectedAndProfile() {
+  const { tweets, sendTweet } = useTweets();
+
+  return (
+    <>
+      <TweetFormWrapper>
+        <TweetForm onSubmit={sendTweet} />
+      </TweetFormWrapper>
+      <TweetList tweets={tweets} />
+    </>
+  );
+}
+
+export default function Home() {
+  const { connected } = useWallet();
+
+  const { loaded, profile } = useProfile();
+  const hasProfile = !!profile;
+
+  if (!connected) {
+    return <NotConnected />;
+  }
+
+  if (connected && loaded && !hasProfile) {
+    return <NoProfile />;
+  }
+
+  if (connected && loaded && hasProfile) {
+    return <ConnectedAndProfile />;
+  }
+
+  return null;
+}
