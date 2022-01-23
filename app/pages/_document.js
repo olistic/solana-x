@@ -22,7 +22,6 @@ export default class Document extends NextDocument {
             dangerouslySetInnerHTML={{ __html: getCssText() }}
             id="stitches"
           />
-          <title>solana twitter</title>
         </Head>
         <body>
           <Main />

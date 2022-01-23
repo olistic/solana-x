@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useWallet } from '@solana/wallet-adapter-react';
 
 import ProfileForm from './ProfileForm';
@@ -42,17 +43,21 @@ export default function Home() {
   const { loaded, profile } = useProfile();
   const hasProfile = !!profile;
 
+  let Content = null;
   if (!connected) {
-    return <NotConnected />;
+    Content = NotConnected;
+  } else if (connected && loaded && !hasProfile) {
+    Content = NoProfile;
+  } else if (connected && loaded && hasProfile) {
+    Content = ConnectedAndProfile;
   }
 
-  if (connected && loaded && !hasProfile) {
-    return <NoProfile />;
-  }
-
-  if (connected && loaded && hasProfile) {
-    return <ConnectedAndProfile />;
-  }
-
-  return null;
+  return (
+    <>
+      <Head>
+        <title>solana twitter</title>
+      </Head>
+      <Content />
+    </>
+  );
 }
