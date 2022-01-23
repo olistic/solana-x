@@ -10,13 +10,13 @@ import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { clusterApiUrl } from '@solana/web3.js';
 
-const cluster = process.env.SOLANA_CLUSTER;
+const cluster = process.env.NEXT_PUBLIC_SOLANA_CLUSTER;
 const network =
   cluster === 'mainnet'
     ? WalletAdapterNetwork.Mainnet
     : WalletAdapterNetwork.Devnet;
 const endpoint = clusterApiUrl(network);
-const commitment = process.env.SOLANA_COMMITMENT;
+const commitment = process.env.NEXT_PUBLIC_SOLANA_COMMITMENT;
 const config = { commitment };
 
 const wallets = [new PhantomWalletAdapter(), new SolflareWalletAdapter()];

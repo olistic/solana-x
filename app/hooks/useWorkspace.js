@@ -6,7 +6,7 @@ import { useMemo } from 'react';
 import idl from '../idl/solana_twitter.json';
 
 const programId = new PublicKey(idl.metadata.address);
-const commitment = process.env.SOLANA_COMMITMENT;
+const commitment = process.env.NEXT_PUBLIC_SOLANA_COMMITMENT;
 
 export default function useWorkspace() {
   const { connection } = useConnection();
