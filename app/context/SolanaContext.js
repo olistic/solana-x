@@ -4,6 +4,7 @@ import {
 } from '@solana/wallet-adapter-react';
 import {
   PhantomWalletAdapter,
+  SlopeWalletAdapter,
   SolflareWalletAdapter,
 } from '@solana/wallet-adapter-wallets';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
@@ -19,7 +20,11 @@ const endpoint = clusterApiUrl(network);
 const commitment = process.env.NEXT_PUBLIC_SOLANA_COMMITMENT;
 const config = { commitment };
 
-const wallets = [new PhantomWalletAdapter(), new SolflareWalletAdapter()];
+const wallets = [
+  new PhantomWalletAdapter(),
+  new SolflareWalletAdapter(),
+  new SlopeWalletAdapter(),
+];
 
 export function SolanaProvider({ children }) {
   return (
