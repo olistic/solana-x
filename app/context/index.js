@@ -1,6 +1,12 @@
+import dynamic from 'next/dynamic';
+
 import { ProfileProvider } from './ProfileContext';
-import { SolanaProvider } from './SolanaContext';
 import { TweetsProvider } from './TweetsContext';
+
+const SolanaProvider = dynamic(
+  () => import('./SolanaContext').then(({ SolanaProvider }) => SolanaProvider),
+  { ssr: false },
+);
 
 export default function AppContext({ children }) {
   return (

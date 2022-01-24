@@ -5,8 +5,12 @@ import Tweet from '../../components/Tweet';
 
 export default function TweetId() {
   const router = useRouter();
-  const { tweetId } = router.query;
 
+  if (!router.isReady) {
+    return null;
+  }
+
+  const { tweetId } = router.query;
   const tweetPublicKey = new PublicKey(tweetId);
 
   return <Tweet publicKey={tweetPublicKey} />;

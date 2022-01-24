@@ -5,8 +5,12 @@ import Author from '../../components/Author';
 
 export default function AuthorId() {
   const router = useRouter();
-  const { authorId } = router.query;
 
+  if (!router.isReady) {
+    return null;
+  }
+
+  const { authorId } = router.query;
   const authorPublicKey = new PublicKey(authorId);
 
   return <Author publicKey={authorPublicKey} />;

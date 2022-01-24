@@ -43,7 +43,7 @@ export default function Home() {
   const { loaded, profile } = useProfile();
   const hasProfile = !!profile;
 
-  let Content = null;
+  let Content = () => null;
   if (!connected) {
     Content = NotConnected;
   } else if (connected && loaded && !hasProfile) {
