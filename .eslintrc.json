@@ -1,15 +1,8 @@
 {
-  "env": {
-    "browser": true,
-    "jest": true,
-    "mocha": true
-  },
-  "extends": ["airbnb", "airbnb/hooks", "prettier", "plugin:react/jsx-runtime"],
-  "rules": {
-    "import/prefer-default-export": "off",
-    "react/function-component-definition": "off",
-    "react/jsx-filename-extension": "off",
-    "react/jsx-props-no-spreading": "off",
-    "react/prop-types": "off"
+  "extends": ["next", "prettier"],
+  "settings": {
+    "next": {
+      "rootDir": "app/"
+    }
   }
 }

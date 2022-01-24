@@ -1,1 +1,4 @@
 package.json
+
+# Next.js build output
+.next
