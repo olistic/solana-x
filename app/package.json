@@ -10,9 +10,9 @@
   "dependencies": {
     "@project-serum/anchor": "^0.20.1",
     "@solana/wallet-adapter-base": "^0.9.2",
-    "@solana/wallet-adapter-react": "^0.15.2",
+    "@solana/wallet-adapter-react": "^0.15.4",
     "@solana/wallet-adapter-react-ui": "^0.9.3",
-    "@solana/wallet-adapter-wallets": "^0.14.2",
+    "@solana/wallet-adapter-wallets": "^0.16.1",
     "@solana/web3.js": "^1.31.0",
     "@stitches/react": "^1.2.6",
     "date-fns": "^2.28.0",
