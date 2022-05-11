@@ -3,6 +3,7 @@ import {
   WalletProvider,
 } from '@solana/wallet-adapter-react';
 import {
+  ExodusWalletAdapter,
   PhantomWalletAdapter,
   SlopeWalletAdapter,
   SolflareWalletAdapter,
@@ -21,6 +22,7 @@ const commitment = process.env.NEXT_PUBLIC_SOLANA_COMMITMENT;
 const config = { commitment };
 
 const wallets = [
+  new ExodusWalletAdapter(),
   new PhantomWalletAdapter(),
   new SolflareWalletAdapter(),
   new SlopeWalletAdapter(),
