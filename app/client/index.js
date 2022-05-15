@@ -1,7 +1,11 @@
+import memoize from 'p-memoize';
 import { BN, web3 } from '@project-serum/anchor';
 
 import Profile from '../models/Profile';
 import Tweet from '../models/Tweet';
+
+const getCacheKey = ([workspace, ...args]) =>
+  JSON.stringify([workspace.program.programId, ...args]);
 
 const getProfilePDA = ({ program }, ownerPublicKey) =>
   web3.PublicKey.findProgramAddress(
@@ -15,16 +19,23 @@ const buildProfile = ({ program }, publicKey, profileAccount) => {
   return new Profile(publicKey, owner, name);
 };
 
-export const getProfile = async ({ program }, ownerPublicKey) => {
-  const [publicKey] = await getProfilePDA({ program }, ownerPublicKey);
+export const getProfile = memoize(
+  async ({ program }, ownerPublicKey) => {
+    const [publicKey] = await getProfilePDA({ program }, ownerPublicKey);
 
-  const profileAccount = await program.account.profile.fetchNullable(publicKey);
-  if (!profileAccount) {
-    return null;
-  }
+    const profileAccount = await program.account.profile.fetchNullable(
+      publicKey,
+    );
+    if (!profileAccount) {
+      return null;
+    }
 
-  return buildProfile({ program }, publicKey, profileAccount);
-};
+    return buildProfile({ program }, publicKey, profileAccount);
+  },
+  {
+    cacheKey: getCacheKey,
+  },
+);
 
 export const createProfile = async ({ wallet, program }, name) => {
   const ownerPublicKey = wallet.publicKey;
@@ -50,26 +61,31 @@ const buildTweet = async ({ program }, publicKey, tweetAccount) => {
   return new Tweet(publicKey, author, timestamp, content);
 };
 
+export const fetchTweets = memoize(
+  async ({ program }, filters = []) => {
+    const tweets = await program.account.tweet.all(filters);
+    return Promise.all(
+      tweets.map((tweet) =>
+        buildTweet({ program }, tweet.publicKey, tweet.account),
+      ),
+    );
+  },
+  {
+    cacheKey: getCacheKey,
+  },
+);
+
+export const getTweet = async ({ program }, publicKey) => {
+  const tweetAccount = await program.account.tweet.fetch(publicKey);
+  return buildTweet({ program }, publicKey, tweetAccount);
+};
+
 export const authorFilter = (authorPublicKey) => ({
   memcmp: {
     offset: 8, // Discriminator.
     bytes: authorPublicKey.toBase58(),
   },
 });
-
-export const fetchTweets = async ({ program }, filters = []) => {
-  const tweets = await program.account.tweet.all(filters);
-  return Promise.all(
-    tweets.map((tweet) =>
-      buildTweet({ program }, tweet.publicKey, tweet.account),
-    ),
-  );
-};
-
-export const getTweet = async ({ program }, publicKey) => {
-  const tweetAccount = await program.account.tweet.fetch(publicKey);
-  return buildTweet({ program }, publicKey, tweetAccount);
-};
 
 export const sendTweet = async ({ wallet, program }, content) => {
   const tweet = web3.Keypair.generate();
