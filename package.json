@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.1.6",
-    "@project-serum/anchor": "^0.20.1",
+    "@project-serum/anchor": "^0.24.2",
     "eslint": "^8.15.0",
     "eslint-config-next": "^12.1.6",
     "eslint-config-prettier": "^8.5.0",

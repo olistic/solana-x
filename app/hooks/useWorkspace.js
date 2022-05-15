@@ -1,4 +1,4 @@
-import { Program, Provider } from '@project-serum/anchor';
+import { AnchorProvider, Program } from '@project-serum/anchor';
 import { PublicKey } from '@solana/web3.js';
 import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react';
 import { useMemo } from 'react';
@@ -13,7 +13,7 @@ export default function useWorkspace() {
   const wallet = useAnchorWallet();
   const provider = useMemo(
     () =>
-      new Provider(connection, wallet, {
+      new AnchorProvider(connection, wallet, {
         commitment,
         preflightCommitment: commitment,
       }),
