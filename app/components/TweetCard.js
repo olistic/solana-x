@@ -1,7 +1,7 @@
 import { useWallet } from '@solana/wallet-adapter-react';
 
-import Avatar from './Avatar';
 import MaybeLink from './MaybeLink';
+import ProfilePicture from './ProfilePicture';
 import { styled } from '../stitches.config';
 
 const StyledArticle = styled('article', {
@@ -54,7 +54,7 @@ export default function TweetCard({ author, content, createdAt, id }) {
 
   return (
     <StyledArticle>
-      <Avatar id={author.name} />
+      <ProfilePicture publicKey={author.owner} />
       <Container>
         <StyledHeader>
           <Author>

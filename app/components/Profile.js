@@ -1,7 +1,7 @@
 import { useWallet } from '@solana/wallet-adapter-react';
 
-import Avatar from './Avatar';
 import MaybeLink from './MaybeLink';
+import ProfilePicture from './ProfilePicture';
 import useProfile from '../hooks/useProfile';
 import { condensePublicKey } from '../utils/publicKeys';
 import { styled } from '../stitches.config';
@@ -46,7 +46,7 @@ export default function Profile() {
   return (
     <MaybeLink href="/profile">
       <Row>
-        <Avatar id={name} size="sm" />
+        <ProfilePicture publicKey={publicKey} size="sm" />
         <Column>
           <Name>{name}</Name>
           <PublicKey>{condensePublicKey(publicKey.toBase58())}</PublicKey>

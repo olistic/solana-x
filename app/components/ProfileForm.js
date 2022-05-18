@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import Avatar from './Avatar';
 import Button from './Button';
 import TextField from './TextField';
 import { styled } from '../stitches.config';
@@ -32,7 +31,6 @@ export default function ProfileForm({ onSubmit }) {
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <Avatar id={name} size="lg" />
       <Wrapper>
         <StyledTextField
           onChange={(event) => setName(event.target.value)}
