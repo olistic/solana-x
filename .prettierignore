@@ -1,4 +1,11 @@
-package.json
-
-# Next.js build output
+.DS_Store
+.anchor
 .next
+.vercel
+.yarn
+build
+dist
+next-env.d.ts
+node_modules
+target
+test-ledger

@@ -1,19 +1,22 @@
+[workspace]
+types = "web/lib/idl"
+
+[features]
+seeds = false
+skip-lint = false
+
 [programs.localnet]
-solana_twitter = "DeWSVxoMAW52Lz49cqSLo21FujaLAeUpJnwxrsBFUFT2"
+solana_x = "7mcU1c3NdmYjbUG9ZSzwY29VV1gCj4bCDRzB7Jc9KtUS"
 
 [programs.devnet]
-solana_twitter = "DeWSVxoMAW52Lz49cqSLo21FujaLAeUpJnwxrsBFUFT2"
-
-[programs.mainnet]
-solana_twitter = "DeWSVxoMAW52Lz49cqSLo21FujaLAeUpJnwxrsBFUFT2"
+solana_x = "7mcU1c3NdmYjbUG9ZSzwY29VV1gCj4bCDRzB7Jc9KtUS"
 
 [registry]
-url = "https://anchor.projectserum.com"
+url = "https://api.apr.dev"
 
 [provider]
-cluster = "mainnet"
-wallet = "/Users/oli/.config/solana/id.json"
+cluster = "devnet"
+wallet = "/Users/olistic/.config/solana/id.json"
 
 [scripts]
-test = "yarn run mocha -t 1000000 tests/"
-copy-idl = "mkdir -p app/idl && cp target/idl/solana_twitter.json app/idl/solana_twitter.json"
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"

@@ -1,27 +1,29 @@
 {
-  "name": "solana-twitter",
-  "description": "Twitter clone built on Solana.",
-  "repository": "https://github.com/olistic/solana-twitter.git",
+  "name": "solana-x",
+  "description": "X clone built on Solana",
+  "repository": "https://github.com/olistic/solana-x.git",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "dev": "yarn workspace @solana-twitter/app run dev",
-    "lint": "eslint --cache --ext .js . && prettier --check \"app/**/*.js\"",
-    "lint:fix": "eslint --cache --ext .js . --fix && prettier --write \"app/**/*.js\""
+    "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check",
+    "lint:fix": "prettier */*.js \"*/**/*{.js,.ts}\" --write"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.28.0"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^12.1.6",
-    "@project-serum/anchor": "^0.24.2",
-    "eslint": "^8.15.0",
-    "eslint-config-next": "^12.1.6",
-    "eslint-config-prettier": "^8.5.0",
-    "husky": "^8.0.1",
-    "lint-staged": "^12.4.1",
-    "mocha": "^10.0.0",
-    "prettier": "2.6.2"
+    "@types/bn.js": "^5.1.0",
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^9.0.0",
+    "chai": "^4.3.4",
+    "encoding": "^0.1.13",
+    "mocha": "^9.0.3",
+    "prettier": "3.0.1",
+    "ts-mocha": "^10.0.0",
+    "typescript": "5.1.6"
   },
   "workspaces": [
-    "app"
+    "web"
   ]
 }
